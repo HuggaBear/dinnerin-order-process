@@ -1,33 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import Products from "./components/Products";
-import { Route } from "react-router-dom";
+// import Products from "./components/Products";
+// import { Route } from "react-router-dom";
 import ProgressBar from "./components/ProgressBar";
-import NightsAndPeople from "./components/NightsAndPeople";
-import SpecialDiets from "./components/SpecialDiets";
+import Content from "./components/Content";
+import UserDataContextProvider from "./contexts/UserDataContext";
+import ProgressContextProvider from "./contexts/ProgressContext";
 
 function App() {
-	const [progress, updateProgress] = useState(0);
-	let content;
-	switch (progress) {
-		case 0:
-			content = <NightsAndPeople progress={progress} updateProgress={updateProgress} />;
-			break;
-		case 1:
-			content = <SpecialDiets progress={progress} updateProgress={updateProgress} />;
-			break;
-		default:
-			content = <NightsAndPeople progress={progress} updateProgress={updateProgress} />;
-	}
 	return (
-		<div className="App">
-			<ProgressBar />
-			{content}
-
-			<main>
-				<Route exact path="/" component={Products} />
-			</main>
-		</div>
+		<main>
+			<ProgressContextProvider>
+				<ProgressBar />
+				<UserDataContextProvider>
+					<Content />
+				</UserDataContextProvider>
+			</ProgressContextProvider>
+			{/* <Route exact path="/no/" component={Products} />*/}
+		</main>
 	);
 }
 export default App;
