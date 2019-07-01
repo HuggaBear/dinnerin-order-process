@@ -16,7 +16,6 @@ export class Products extends Component {
 	}
 
 	render() {
-		//console.log(this.state);
 		const { products, meals, isLoaded } = this.state;
 
 		const productsHTML = isLoaded ? (
