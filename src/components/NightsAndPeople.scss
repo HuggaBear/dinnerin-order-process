@@ -35,22 +35,31 @@
 	}
 
 	.radio-squares {
-		display: grid;
-		justify-items: center;
 		font-size: 2rem;
-		grid-gap: $checkbox-size;
 		margin-bottom: 5rem !important;
-		&.nights {
-			max-width: $checkbox-size * (2 * $num-nights - 1);
-			width: 100%;
-			grid-template-columns: repeat(auto-fill, $checkbox-size);
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		label {
+			margin-left: $checkbox-size / 2;
+			margin-right: $checkbox-size / 2;
+			margin-bottom: $checkbox-size / 2;
 		}
-		&.people {
-			width: $checkbox-size * (2 * $num-people - 1);
-			grid-template-columns: repeat(auto-fill, $checkbox-size);
-			@include breakSm {
-				width: ($checkbox-size * (2 * ($num-people / 2) - 1));
-			}
-		}
+
+		// display: grid;
+		// justify-items: center;
+		// grid-gap: $checkbox-size;
+		// &.nights {
+		// 	max-width: $checkbox-size * (2 * $num-nights - 1);
+		// 	width: 100%;
+		// 	grid-template-columns: repeat(auto-fill, $checkbox-size);
+		// }
+		// &.people {
+		// 	width: $checkbox-size * (2 * $num-people - 1);
+		// 	grid-template-columns: repeat(auto-fill, $checkbox-size);
+		// 	@include breakSm {
+		// 		width: ($checkbox-size * (2 * ($num-people / 2) - 1));
+		// 	}
+		// }
 	}
 }

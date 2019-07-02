@@ -7,16 +7,20 @@ import DinRadioButton from "./DinRadioButton";
 
 export default function NightsAndPeople() {
 	// Change these to change the values allowed
-	const nightsValues = [3, 5, 7];
-	const peopleValues = [1, 2, 3, 4, 5, 6];
 
 	const { userData, updateUserData } = useContext(UserDataContext);
 	const { progress, updateProgress } = useContext(ProgressContext);
-
 	const { nights, people } = userData;
+	// 1 person 3 nights not allowed
+	const nightsValues = [3, 5, 7];
+	const peopleValues = nights === 3 ? [2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
 
 	const updateNights = e => {
-		updateUserData({ ...userData, nights: parseInt(e.target.value) });
+		if (people === 1 && parseInt(e.target.value) === 3) {
+			updateUserData({ ...userData, people: 2, nights: parseInt(e.target.value) });
+		} else {
+			updateUserData({ ...userData, nights: parseInt(e.target.value) });
+		}
 	};
 
 	const updatePeople = e => {
@@ -29,7 +33,7 @@ export default function NightsAndPeople() {
 	};
 	return (
 		<form className="nights-and-people" onSubmit={onSubmit}>
-			<h2 className="uppercase">How many nights?</h2>
+			<h2 className="">How many nights?</h2>
 			<div className="radio-squares nights">
 				{nightsValues.map((value, index) => (
 					<DinRadioButton
@@ -41,7 +45,7 @@ export default function NightsAndPeople() {
 					/>
 				))}
 			</div>
-			<h2 className="uppercase">How many people?</h2>
+			<h2 className="">How many people?</h2>
 			<div className="radio-squares people">
 				{peopleValues.map((value, index) => (
 					<DinRadioButton

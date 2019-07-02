@@ -7,14 +7,12 @@ export default function SpecialDiets() {
 	const { userData, updateUserData } = useContext(UserDataContext);
 	const { progress, updateProgress } = useContext(ProgressContext);
 	const { vegetarian } = userData;
-	console.log(userData);
 
 	const updateVegetarian = e => {
 		updateUserData({ ...userData, vegetarian: e.target.value === "true" });
 	};
 
 	const onSubmit = e => {
-		console.log(userData);
 		updateProgress(progress + 1);
 		console.log("Store user data in local storage / submit to API");
 		e.preventDefault();
