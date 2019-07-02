@@ -1,0 +1,10 @@
+@mixin breakMd {
+	@media screen and (max-width: 900px) {
+		@content;
+	}
+}
+@mixin breakSm {
+	@media screen and (max-width: 600px) {
+		@content;
+	}
+}

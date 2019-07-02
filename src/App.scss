@@ -1,6 +1,29 @@
-@import "/scss/classes.scss";
+@import "/scss/classes";
+@import "/scss/variables";
 
 body {
 	overflow-x: hidden;
 	margin: 0;
+}
+h2 {
+	text-align: center;
+	color: black !important;
+	font-size: 2rem !important;
+	margin-top: 0;
+	margin-bottom: 3rem !important;
+}
+.button {
+	border: $border-width solid $primary-color;
+	background: white;
+	font-size: 1.4rem !important;
+	color: $primary-color;
+	font-weight: bold;
+	padding: 0.5em;
+	width: 100%;
+	max-width: 320px;
+	cursor: pointer;
+	&:hover {
+		background: $primary-color;
+		color: white;
+	}
 }
