@@ -1,0 +1,40 @@
+@import "../scss/variables";
+.progress-bar {
+	font-size: 0.7rem;
+	margin-top: 3rem;
+	box-sizing: border-box;
+	padding: 1em;
+	border-top: 1px solid $tertiary-color;
+	border-bottom: 1px solid $tertiary-color;
+	color: $secondary-color;
+	letter-spacing: 2px;
+	.steps {
+		padding: 0;
+		margin: auto;
+		display: flex;
+		justify-content: space-between;
+		list-style-position: inside;
+		max-width: 940px;
+		width: 100%;
+	}
+	.step {
+		&.complete {
+			color: $tertiary-color;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		&.current {
+			color: $primary-color;
+		}
+		&:after {
+			content: "►";
+			font-size: 0.8em;
+			margin-left: 1rem;
+			margin-right: 1rem;
+		}
+		&:last-child:after {
+			display: none;
+		}
+	}
+}
