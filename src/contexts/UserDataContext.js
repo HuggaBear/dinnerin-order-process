@@ -8,7 +8,8 @@ export default function UserDataContextProvider({ children }) {
 		people: 3,
 		vegetarian: false,
 		meals: [],
-		sides: []
+		sides: [],
+		subscriptionType: "subscription"
 	});
 	return <UserDataContext.Provider value={{ userData, updateUserData }}>{children}</UserDataContext.Provider>;
 }

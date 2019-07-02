@@ -6,8 +6,6 @@ import "./NightsAndPeople.scss";
 import DinRadioButton from "./DinRadioButton";
 
 export default function NightsAndPeople() {
-	// Change these to change the values allowed
-
 	const { userData, updateUserData } = useContext(UserDataContext);
 	const { progress, updateProgress } = useContext(ProgressContext);
 	const { nights, people } = userData;

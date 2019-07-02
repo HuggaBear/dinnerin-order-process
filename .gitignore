@@ -24,3 +24,6 @@ yarn-error.log*
 
 # API Keys
 /src/helpers
+
+#env
+.env
