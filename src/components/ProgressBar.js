@@ -13,6 +13,10 @@ export default function ProgressBar() {
 		"Plan Selection",
 		"Checkout"
 	];
+
+	//DEBUG - Start app on meal selection REMOVE
+	updateProgress(2);
+
 	return (
 		<div className="progress-bar uppercase">
 			<ol className="steps">

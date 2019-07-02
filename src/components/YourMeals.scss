@@ -1,0 +1,30 @@
+@import "../scss/variables";
+
+.your-meals {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 42px auto;
+	align-content: start;
+	grid-gap: 1rem;
+	max-height: 540px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-right: 5px;
+	.header {
+		box-sizing: border-box;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid black;
+		position: sticky;
+		top: 0;
+		background-color: white;
+		align-items: center;
+		display: flex;
+		h3 {
+			line-height: 1.5em;
+		}
+	}
+}
+.footer {
+	margin-top: 1rem;
+	padding-right: 11px;
+}

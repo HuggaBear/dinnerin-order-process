@@ -1,0 +1,44 @@
+.available-meals {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 42px auto;
+	align-content: start;
+	grid-template-areas: "header header header";
+	grid-gap: 1rem;
+	max-height: 706px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding-right: 5px;
+	.header {
+		grid-area: header;
+		box-sizing: border-box;
+		position: sticky;
+		top: 0;
+		background-color: white;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid black;
+		h3 {
+			line-height: 1.5em;
+		}
+		form {
+			display: flex;
+			justify-content: space-between;
+			.din-radio-button {
+				&:first-child {
+					margin-right: 1em;
+				}
+				.button-small {
+					padding: 0.2em;
+					height: auto;
+					font-weight: 500;
+					font-size: 0.9rem;
+					width: 150px;
+					border-width: 2px;
+				}
+			}
+		}
+	}
+}

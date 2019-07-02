@@ -36,9 +36,10 @@ export default function NightsAndPeople() {
 				{nightsValues.map((value, index) => (
 					<DinRadioButton
 						key={index}
-						name={"nights"}
+						name="nights"
 						checked={nights === value}
 						value={value}
+						label={value}
 						onChange={updateNights}
 					/>
 				))}
@@ -48,9 +49,10 @@ export default function NightsAndPeople() {
 				{peopleValues.map((value, index) => (
 					<DinRadioButton
 						key={index}
-						name={"people"}
+						name="people"
 						checked={people === value}
 						value={value}
+						label={value}
 						onChange={updatePeople}
 					/>
 				))}

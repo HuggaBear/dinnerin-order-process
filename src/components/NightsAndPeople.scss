@@ -2,41 +2,14 @@
 @import "../scss/mixins";
 
 .nights-and-people {
-	margin-top: 5rem !important;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	input[type="radio"] {
-		display: none;
-	}
-
-	label :checked + span {
-		background: $primary-color;
-		color: white;
-	}
-
-	label span {
-		box-sizing: border-box;
-		display: inline-block;
-		background: white;
-		border: $border-width solid $primary-color;
-		color: $primary-color;
-		height: $checkbox-size;
-		width: $checkbox-size;
-		line-height: $checkbox-size - 0.3;
-		text-align: center;
-		font-weight: bold;
-		cursor: pointer;
-		&:hover {
-			background: $primary-color;
-			color: white;
-		}
-	}
 
 	.radio-squares {
 		font-size: 2rem;
-		margin-bottom: 5rem !important;
+		margin-bottom: 5rem;
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
@@ -45,21 +18,5 @@
 			margin-right: $checkbox-size / 2;
 			margin-bottom: $checkbox-size / 2;
 		}
-
-		// display: grid;
-		// justify-items: center;
-		// grid-gap: $checkbox-size;
-		// &.nights {
-		// 	max-width: $checkbox-size * (2 * $num-nights - 1);
-		// 	width: 100%;
-		// 	grid-template-columns: repeat(auto-fill, $checkbox-size);
-		// }
-		// &.people {
-		// 	width: $checkbox-size * (2 * $num-people - 1);
-		// 	grid-template-columns: repeat(auto-fill, $checkbox-size);
-		// 	@include breakSm {
-		// 		width: ($checkbox-size * (2 * ($num-people / 2) - 1));
-		// 	}
-		// }
 	}
 }

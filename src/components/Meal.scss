@@ -1,0 +1,17 @@
+.single-meal {
+	height: 150px;
+	width: 100%;
+	background-position: center;
+	background-size: cover;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	.title {
+		background-color: rgba(0, 0, 0, 0.6);
+		padding: 0.4em;
+		font-size: 1rem;
+		font-weight: 500;
+		color: white;
+		letter-spacing: 1px;
+	}
+}

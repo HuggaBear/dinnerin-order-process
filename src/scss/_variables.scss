@@ -1,9 +1,12 @@
 $primary-color: #00a651;
 $secondary-color: #ccc;
 $tertiary-color: goldenrod;
-$border-width: 5px;
-$checkbox-size: 1.6em;
 
-// Number of nights / people values. Used to calculate width of radio button containers.
-$num-nights: 3;
-$num-people: 6;
+// Border width of large buttons
+$border-width: 5px;
+
+// Size of checkboxes for Nights & People
+$checkbox-size: 1.5em;
+
+// Height of meal images
+$meal-image-height: 9rem;

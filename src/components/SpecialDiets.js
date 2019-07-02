@@ -20,7 +20,7 @@ export default function SpecialDiets() {
 
 	return (
 		<form className="special-diets" onSubmit={onSubmit}>
-			<h2 className="uppercase">Are you strictly vegetarian?</h2>
+			<h2>Are you strictly vegetarian?</h2>
 			<div className="radio-checkboxes">
 				<label className={`uppercase ${vegetarian ? "checked" : ""}`}>
 					<input
