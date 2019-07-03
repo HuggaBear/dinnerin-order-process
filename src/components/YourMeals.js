@@ -1,7 +1,7 @@
 import React from "react";
 import "./YourMeals.scss";
 import Meal from "./Meal";
-export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedMealCount, nights }) {
+export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedMealCount, nights, continueClick }) {
 	return (
 		<div>
 			<div className="your-meals">
@@ -26,7 +26,9 @@ export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedM
 				))}
 			</div>
 			<div className="footer">
-				<button className="uppercase button">Continue</button>
+				<button className="uppercase button" onClick={continueClick}>
+					Continue
+				</button>
 			</div>
 		</div>
 	);
