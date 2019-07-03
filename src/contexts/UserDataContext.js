@@ -7,7 +7,7 @@ export default function UserDataContextProvider({ children }) {
 		nights: 5,
 		people: 3,
 		vegetarian: false,
-		meals: [],
+		meals: [{}, {}, {}, {}, {}],
 		sides: [],
 		subscriptionType: "subscription"
 	});

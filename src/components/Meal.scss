@@ -6,6 +6,9 @@
 	display: flex;
 	justify-content: flex-end;
 	flex-direction: column;
+	&.loaded {
+		cursor: pointer;
+	}
 	.title {
 		background-color: rgba(0, 0, 0, 0.6);
 		padding: 0.4em;
