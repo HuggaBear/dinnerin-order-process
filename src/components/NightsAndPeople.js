@@ -8,12 +8,13 @@ import DinRadioButton from "./DinRadioButton";
 export default function NightsAndPeople() {
 	const { userData, updateUserData } = useContext(UserDataContext);
 	const { progress, updateProgress } = useContext(ProgressContext);
-	const { nights, people, meals } = userData;
-	// 1 person 3 nights not allowed
+	const { nights, people } = userData;
 	const nightsValues = [3, 5, 7];
+	// 1 person 3 nights not allowed
 	const peopleValues = nights === 3 ? [2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
 
 	const updateNights = e => {
+		// 1 person 3 nights not allowed
 		if (people === 1 && parseInt(e.target.value) === 3) {
 			updateUserData({ ...userData, people: 2, nights: parseInt(e.target.value) });
 		} else {
@@ -25,7 +26,7 @@ export default function NightsAndPeople() {
 		updateUserData({ ...userData, people: parseInt(e.target.value) });
 	};
 	const onSubmit = e => {
-		// Update the number of selected meals (equal to number of nights)
+		// Initialise meals with placeholder array that is the same length as nights
 		updateUserData({ ...userData, meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights) });
 		updateProgress(progress + 1);
 		e.preventDefault();

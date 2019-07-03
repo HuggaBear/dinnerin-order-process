@@ -15,7 +15,7 @@ export default function ProgressBar() {
 	];
 
 	//DEBUG - Start app on meal selection REMOVE
-	updateProgress(2);
+	//updateProgress(2);
 
 	return (
 		<div className="progress-bar uppercase">

@@ -1,7 +1,6 @@
 .available-meals {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: 42px auto;
 	align-content: start;
 	grid-template-areas: "header header header";
 	grid-gap: 1rem;

@@ -14,7 +14,6 @@ export default function SpecialDiets() {
 
 	const onSubmit = e => {
 		updateProgress(progress + 1);
-		console.log("Store user data in local storage / submit to API");
 		e.preventDefault();
 	};
 
