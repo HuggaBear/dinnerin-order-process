@@ -5,8 +5,8 @@ import axios from "axios";
 import Meal from "./Meal";
 import DinRadioButton from "./DinRadioButton";
 
-export default function AvailableMeals({ updateSelectedMeals }) {
-	// Empty unloaded meal data
+export default function AvailableMeals({ addSelectedMeal }) {
+	// Placeholder meal data
 	const [mealData, updateMealData] = useState({
 		meals: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
 		loaded: false,
@@ -41,7 +41,7 @@ export default function AvailableMeals({ updateSelectedMeals }) {
 							className="loaded"
 							title={meal.acf.title}
 							image={meal.acf.image}
-							onClick={updateSelectedMeals}
+							onClick={addSelectedMeal}
 						/>
 					) : (
 						<Meal key={index} />
