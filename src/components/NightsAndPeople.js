@@ -14,6 +14,7 @@ export default function NightsAndPeople() {
 	const peopleValues = nights === 3 ? [2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
 
 	const updateNights = e => {
+		// Clear selected meals when user changes number of nights
 		// 1 person 3 nights not allowed
 		if (people === 1 && parseInt(e.target.value) === 3) {
 			updateUserData({ ...userData, people: 2, nights: parseInt(e.target.value) });
@@ -27,7 +28,12 @@ export default function NightsAndPeople() {
 	};
 	const onSubmit = e => {
 		// Initialise meals with placeholder array that is the same length as nights
-		updateUserData({ ...userData, meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights) });
+		// This also clears the selected meals if they exist already
+		updateUserData({
+			...userData,
+			meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
+			selectedMealCount: 0
+		});
 		updateProgress(progress + 1);
 		e.preventDefault();
 	};
