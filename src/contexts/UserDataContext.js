@@ -8,6 +8,7 @@ export default function UserDataContextProvider({ children }) {
 		people: 3,
 		vegetarian: false,
 		meals: [{}, {}, {}, {}, {}],
+		selectedMealCount: 0,
 		sides: [],
 		subscriptionType: "subscription"
 	});
