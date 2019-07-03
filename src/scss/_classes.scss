@@ -1,3 +1,7 @@
+@import "variables";
 .uppercase {
 	text-transform: uppercase;
+}
+.primary-color {
+	color: $primary-color;
 }

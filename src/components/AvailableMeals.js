@@ -42,6 +42,7 @@ export default function AvailableMeals({ addSelectedMeal }) {
 							title={meal.acf.title}
 							image={meal.acf.image}
 							onClick={addSelectedMeal}
+							index={index}
 						/>
 					) : (
 						<Meal key={index} />

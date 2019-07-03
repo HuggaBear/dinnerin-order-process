@@ -1,12 +1,11 @@
 import React from "react";
 import "./Meal.scss";
-import placeholder from "../assets/images/placeholder.png";
-export default function Meal({ className, title, image = placeholder, onClick }) {
+export default function Meal({ index, title, image, onClick, className }) {
 	return (
 		<div
-			onClick={onClick && (() => onClick(title, image))}
+			onClick={onClick && (() => onClick(index, title, image))}
 			className={`single-meal ${className}`}
-			style={{ backgroundImage: `url(${image})` }}
+			style={image && { backgroundImage: `url(${image})` }}
 		>
 			{title && <div className="title uppercase">{title}</div>}
 		</div>
