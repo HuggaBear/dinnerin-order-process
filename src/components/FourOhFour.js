@@ -1,13 +1,30 @@
 import React, { useContext } from "react";
 import { ProgressContext } from "../contexts/ProgressContext";
 import "./FourOhFour.scss";
+import { UserDataContext } from "../contexts/UserDataContext";
 export default function _404() {
 	const { updateProgress } = useContext(ProgressContext);
+	const { updateUserData } = useContext(UserDataContext);
 	return (
 		<div className="text-center four-oh-four">
 			<h2>It appears you are lost. Get back on track</h2>
-			<button className="uppercase button" onClick={() => updateProgress(0)}>
-				Back
+			{/* This button resets the application */}
+			<button
+				className="uppercase button"
+				onClick={() => {
+					updateUserData({
+						nights: 5,
+						people: 3,
+						vegetarian: false,
+						meals: [{}, {}, {}, {}, {}],
+						selectedMealCount: 0,
+						sides: [],
+						subscriptionType: "subscription"
+					});
+					updateProgress(0);
+				}}
+			>
+				Reset
 			</button>
 		</div>
 	);
