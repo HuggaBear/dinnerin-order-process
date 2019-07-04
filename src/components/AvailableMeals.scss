@@ -1,23 +1,22 @@
+@import "../scss/variables";
 .available-meals {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	align-content: start;
 	grid-template-areas: "header header header";
 	grid-gap: 1rem;
-	max-height: 706px;
-	overflow-y: auto;
-	overflow-x: hidden;
 	padding-right: 5px;
+	grid-area: availablemeals;
 	.header {
 		grid-area: header;
 		box-sizing: border-box;
 		position: sticky;
-		top: 0;
+		top: $prog-bar-height - 1;
 		background-color: white;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding-bottom: 1rem;
+		padding: 1rem 0rem;
 		border-bottom: 1px solid black;
 		h3 {
 			line-height: 1.5em;

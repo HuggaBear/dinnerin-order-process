@@ -1,6 +1,6 @@
 @import "../scss/variables";
 .single-meal {
-	height: 150px;
+	height: $meal-image-height;
 	width: 100%;
 	background-position: center;
 	background-size: cover;

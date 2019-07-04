@@ -10,7 +10,5 @@ import SideSelection from "./SideSelection";
 export default function Content() {
 	const { progress } = useContext(ProgressContext);
 	const content = [<NightsAndPeople />, <SpecialDiets />, <MealSelection />, <SideSelection />];
-	return (
-		<div className="content">{progress >= 0 && progress < content.length ? content[progress] : <FourOhFour />}</div>
-	);
+	return <>{progress >= 0 && progress < content.length ? content[progress] : <FourOhFour />}</>;
 }

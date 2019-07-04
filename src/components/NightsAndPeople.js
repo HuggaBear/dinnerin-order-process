@@ -14,7 +14,6 @@ export default function NightsAndPeople() {
 	const peopleValues = nights === 3 ? [2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
 
 	const updateNights = e => {
-		// Clear selected meals when user changes number of nights
 		// 1 person 3 nights not allowed
 		if (people === 1 && parseInt(e.target.value) === 3) {
 			updateUserData({ ...userData, people: 2, nights: parseInt(e.target.value) });
@@ -28,7 +27,7 @@ export default function NightsAndPeople() {
 	};
 	const onSubmit = e => {
 		// Initialise meals with placeholder array that is the same length as nights
-		// This also clears the selected meals if they exist already
+		// This also clears selected meals if they already exist
 		updateUserData({
 			...userData,
 			meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
@@ -38,36 +37,38 @@ export default function NightsAndPeople() {
 		e.preventDefault();
 	};
 	return (
-		<form className="nights-and-people" onSubmit={onSubmit}>
-			<h2 className="">How many nights?</h2>
-			<div className="radio-squares nights">
-				{nightsValues.map((value, index) => (
-					<DinRadioButton
-						key={index}
-						name="nights"
-						checked={nights === value}
-						value={value}
-						label={value}
-						onChange={updateNights}
-					/>
-				))}
-			</div>
-			<h2 className="">How many people?</h2>
-			<div className="radio-squares people">
-				{peopleValues.map((value, index) => (
-					<DinRadioButton
-						key={index}
-						name="people"
-						checked={people === value}
-						value={value}
-						label={value}
-						onChange={updatePeople}
-					/>
-				))}
-			</div>
-			<button className="uppercase button" type="submit" value="continue">
-				Continue
-			</button>
-		</form>
+		<div className="content nights-and-people">
+			<form onSubmit={onSubmit}>
+				<h2 className="">How many meals?</h2>
+				<div className="radio-squares nights">
+					{nightsValues.map((value, index) => (
+						<DinRadioButton
+							key={index}
+							name="nights"
+							checked={nights === value}
+							value={value}
+							label={value}
+							onChange={updateNights}
+						/>
+					))}
+				</div>
+				<h2 className="">How many people?</h2>
+				<div className="radio-squares people">
+					{peopleValues.map((value, index) => (
+						<DinRadioButton
+							key={index}
+							name="people"
+							checked={people === value}
+							value={value}
+							label={value}
+							onChange={updatePeople}
+						/>
+					))}
+				</div>
+				<button className="uppercase button" type="submit" value="continue">
+					Continue
+				</button>
+			</form>
+		</div>
 	);
 }

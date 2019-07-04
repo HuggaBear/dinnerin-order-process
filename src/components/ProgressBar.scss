@@ -7,6 +7,12 @@
 	border-bottom: 1px solid $tertiary-color;
 	color: $secondary-color;
 	letter-spacing: 2px;
+	position: sticky;
+	top: -1px;
+	background: white;
+	z-index: 10;
+	min-height: $prog-bar-height;
+	display: flex;
 	.steps {
 		height: 100%;
 		padding: 0;

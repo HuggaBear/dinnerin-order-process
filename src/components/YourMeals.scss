@@ -6,13 +6,16 @@
 	//grid-template-rows: 42px auto;
 	align-content: start;
 	grid-gap: 1rem;
-	max-height: 540px;
 	overflow-x: hidden;
-	overflow-y: auto;
+	overflow-y: show;
 	padding-right: 5px;
-	.header {
+	position: sticky;
+	top: $prog-bar-height - 1;
+	grid-area: yourmeals;
+	max-height: 556px;
+	> .header {
 		box-sizing: border-box;
-		padding-bottom: 1rem;
+		padding: 1rem 0rem;
 		border-bottom: 1px solid black;
 		position: sticky;
 		top: 0;
@@ -23,8 +26,8 @@
 			line-height: 1.5em;
 		}
 	}
-}
-.footer {
-	margin-top: 1rem;
-	padding-right: 11px;
+	> .footer {
+		position: sticky;
+		bottom: 0;
+	}
 }

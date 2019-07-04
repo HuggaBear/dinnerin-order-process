@@ -45,23 +45,22 @@ export default function MealSelection() {
 	};
 
 	return (
-		<div className="meal-selection">
-			<h2 className={`${(displayError || canContinue) && "mb-0"}`}>
+		<div className="content meal-selection">
+			<h2 className={`header ${displayError || canContinue ? "mb-0" : ""}`}>
 				Select {nights} meals for your next delivery
 			</h2>
 			{(displayError || canContinue) && (
 				<ContinueMessage continueClick={continueClick} displayError={displayError} />
 			)}
-			<div className="meal-selection-wrapper">
-				<YourMeals
-					selectedMeals={meals}
-					removeSelectedMeal={removeSelectedMeal}
-					selectedMealCount={selectedMealCount}
-					nights={nights}
-					continueClick={continueClick}
-				/>
-				<AvailableMeals addSelectedMeal={addSelectedMeal} />
-			</div>
+			<YourMeals
+				selectedMeals={meals}
+				removeSelectedMeal={removeSelectedMeal}
+				selectedMealCount={selectedMealCount}
+				nights={nights}
+				continueClick={continueClick}
+			/>
+			<AvailableMeals addSelectedMeal={addSelectedMeal} />
+			<div className="footer" />
 		</div>
 	);
 }

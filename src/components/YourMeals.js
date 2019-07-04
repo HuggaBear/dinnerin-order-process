@@ -3,11 +3,11 @@ import "./YourMeals.scss";
 import Meal from "./Meal";
 export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedMealCount, nights, continueClick }) {
 	return (
-		<div>
+		<>
 			<div className="your-meals">
 				<div className="header">
 					<h3 className="uppercase">
-						Your selected meals:{" "}
+						Your meals:{" "}
 						<span className="primary-color">
 							{selectedMealCount}/{nights}
 						</span>
@@ -24,12 +24,12 @@ export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedM
 						className={meal.selected && "selected"}
 					/>
 				))}
+				<div className="footer">
+					<button className="uppercase button" onClick={continueClick}>
+						Continue
+					</button>
+				</div>
 			</div>
-			<div className="footer">
-				<button className="uppercase button" onClick={continueClick}>
-					Continue
-				</button>
-			</div>
-		</div>
+		</>
 	);
 }
