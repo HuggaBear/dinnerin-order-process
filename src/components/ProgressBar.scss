@@ -1,16 +1,19 @@
 @import "../scss/variables";
+.progress-bar-wrapper {
+	margin-top: 3rem;
+	position: sticky;
+	top: -1px;
+	z-index: 10;
+	background: white;
+	padding-bottom: 1.04rem;
+}
 .progress-bar {
 	font-size: 0.7rem;
-	margin-top: 3rem;
 	box-sizing: border-box;
 	border-top: 1px solid $tertiary-color;
 	border-bottom: 1px solid $tertiary-color;
 	color: $secondary-color;
 	letter-spacing: 2px;
-	position: sticky;
-	top: -1px;
-	background: white;
-	z-index: 10;
 	min-height: $prog-bar-height;
 	display: flex;
 	.steps {

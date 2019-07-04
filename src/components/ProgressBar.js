@@ -15,21 +15,25 @@ export default function ProgressBar() {
 	];
 
 	//DEBUG - Start app on meal selection REMOVE
-	updateProgress(2);
+	updateProgress(3);
 
 	return (
-		<div className="progress-bar uppercase">
-			<ol className="steps">
-				{steps.map((item, index) => (
-					<li
-						key={index}
-						className={`step ${progress > index ? "complete" : ""} ${progress === index ? "current" : ""}`}
-						onClick={() => (index < progress ? updateProgress(index) : null)}
-					>
-						{item}
-					</li>
-				))}
-			</ol>
+		<div className="progress-bar-wrapper">
+			<div className="progress-bar uppercase">
+				<ol className="steps">
+					{steps.map((item, index) => (
+						<li
+							key={index}
+							className={`step ${progress > index ? "complete" : ""} ${
+								progress === index ? "current" : ""
+							}`}
+							onClick={() => (index < progress ? updateProgress(index) : null)}
+						>
+							{item}
+						</li>
+					))}
+				</ol>
+			</div>
 		</div>
 	);
 }

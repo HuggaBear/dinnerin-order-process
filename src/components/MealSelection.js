@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./MealSelection.scss";
-import AvailableMeals from "./AvailableMeals";
+import Meals from "./Meals";
 import YourMeals from "./YourMeals";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { ProgressContext } from "../contexts/ProgressContext";
@@ -46,7 +46,7 @@ export default function MealSelection() {
 
 	return (
 		<div className="content meal-selection">
-			<h2 className={`header ${displayError || canContinue ? "mb-0" : ""}`}>
+			<h2 className={`header uppercase ${displayError || canContinue ? "mb-0" : ""}`}>
 				Select {nights} meals for your next delivery
 			</h2>
 			{(displayError || canContinue) && (
@@ -59,7 +59,7 @@ export default function MealSelection() {
 				nights={nights}
 				continueClick={continueClick}
 			/>
-			<AvailableMeals addSelectedMeal={addSelectedMeal} />
+			<Meals addSelectedMeal={addSelectedMeal} type="meals" />
 			<div className="footer" />
 		</div>
 	);

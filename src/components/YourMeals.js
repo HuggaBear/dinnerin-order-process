@@ -21,7 +21,7 @@ export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedM
 						image={meal.image}
 						onClick={removeSelectedMeal}
 						index={index}
-						className={meal.selected && "selected"}
+						className={meal.selected ? "selected" : ""}
 					/>
 				))}
 				<div className="footer">

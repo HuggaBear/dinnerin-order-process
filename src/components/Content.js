@@ -5,10 +5,10 @@ import { ProgressContext } from "../contexts/ProgressContext";
 import MealSelection from "./MealSelection";
 import FourOhFour from "./FourOhFour";
 import "./Content.scss";
-import SideSelection from "./SideSelection";
+import DessertSelection from "./DessertSelection";
 
 export default function Content() {
 	const { progress } = useContext(ProgressContext);
-	const content = [<NightsAndPeople />, <SpecialDiets />, <MealSelection />, <SideSelection />];
+	const content = [<NightsAndPeople />, <SpecialDiets />, <MealSelection />, <DessertSelection />];
 	return <>{progress >= 0 && progress < content.length ? content[progress] : <FourOhFour />}</>;
 }

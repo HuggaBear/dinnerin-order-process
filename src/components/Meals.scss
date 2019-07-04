@@ -6,17 +6,17 @@
 	grid-template-areas: "header header header";
 	grid-gap: 1rem;
 	padding-right: 5px;
-	grid-area: availablemeals;
+	grid-area: Meals;
 	.header {
 		grid-area: header;
 		box-sizing: border-box;
 		position: sticky;
-		top: $prog-bar-height - 1;
+		top: $prog-bar-height + 1rem;
 		background-color: white;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 1rem 0rem;
+		padding: 0 0 1rem 0;
 		border-bottom: 1px solid black;
 		h3 {
 			line-height: 1.5em;
