@@ -6,7 +6,7 @@ export default function _404() {
 	const { updateProgress } = useContext(ProgressContext);
 	const { updateUserData } = useContext(UserDataContext);
 	return (
-		<div className="text-center four-oh-four">
+		<div className="content text-center four-oh-four">
 			<h2>It appears you are lost. Get back on track</h2>
 			{/* This button resets the application */}
 			<button
@@ -18,7 +18,7 @@ export default function _404() {
 						vegetarian: false,
 						meals: [{}, {}, {}, {}, {}],
 						selectedMealCount: 0,
-						sides: [],
+						desserts: [],
 						subscriptionType: "subscription"
 					});
 					updateProgress(0);

@@ -1,18 +1,18 @@
 @import "../scss/variables";
 
-.your-meals {
+.your-desserts {
 	display: grid;
 	grid-template-columns: 1fr;
 	//grid-template-rows: 42px auto;
 	align-content: start;
-	grid-gap: 1rem;
+	grid-gap: 0rem;
 	overflow-x: hidden;
 	overflow-y: show;
 	padding-right: 5px;
 	position: sticky;
 	top: $prog-bar-height + 1rem;
 	grid-area: yourmeals;
-	max-height: 540px;
+	max-height: 528px;
 	> .header {
 		box-sizing: border-box;
 		padding: 0 0 1rem 0;
@@ -29,5 +29,37 @@
 	> .footer {
 		position: sticky;
 		bottom: 0;
+		background: white;
+		margin-top: auto;
+		.subtotal {
+			border-top: 1px solid black;
+			font-size: 1.2rem;
+			font-weight: bold;
+			display: flex;
+			justify-content: space-between;
+			padding: 1rem 0;
+		}
+	}
+	.selected-dessert {
+		display: flex;
+		justify-content: space-between;
+		padding: 0.2rem 0;
+		border-bottom: 1px solid lighten($secondary-color, 10);
+		align-items: center;
+		font-size: 0.9rem;
+		.title {
+			display: flex;
+			align-items: center;
+		}
+		.remove {
+			color: $secondary-color;
+			padding-right: 0.5em;
+			font-size: 1.8rem;
+			border-radius: 1000px;
+			cursor: pointer;
+			&:hover {
+				color: darken($error-secondary, 5);
+			}
+		}
 	}
 }

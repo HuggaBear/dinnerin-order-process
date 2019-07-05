@@ -39,7 +39,7 @@ export default function NightsAndPeople() {
 	return (
 		<div className="content nights-and-people">
 			<form onSubmit={onSubmit}>
-				<h2 className="">How many meals?</h2>
+				<h2 className="uppercase">How many meals?</h2>
 				<div className="radio-squares nights">
 					{nightsValues.map((value, index) => (
 						<DinRadioButton

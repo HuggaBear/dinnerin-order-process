@@ -9,13 +9,13 @@ export default function ProgressBar() {
 		"Nights & People",
 		"Special Diets",
 		"Meal Selection",
-		"Side Selection",
+		"Dessert Selection",
 		"Plan Selection",
 		"Checkout"
 	];
 
 	//DEBUG - Start app on meal selection REMOVE
-	updateProgress(3);
+	updateProgress(4);
 
 	return (
 		<div className="progress-bar-wrapper">

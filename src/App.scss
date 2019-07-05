@@ -44,9 +44,9 @@ h3 {
 	box-sizing: border-box;
 	text-align: center;
 	font-size: 1.2rem;
-	border: $border-width solid darken(#d8000c, 5);
-	color: darken(#d8000c, 5);
-	background-color: lighten(#ffbaba, 10);
+	border: $border-width solid darken($error-primary, 5);
+	color: darken($error-primary, 5);
+	background-color: lighten($error-secondary, 10);
 	margin: auto;
 	padding: 0.5em;
 	width: 100%;

@@ -42,6 +42,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 							image={item.acf.image}
 							onClick={addSelectedMeal}
 							index={index}
+							price={item.acf.price}
 						/>
 					) : (
 						<Meal key={index} />
@@ -53,7 +54,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 	return (
 		<div className="available-meals">
 			<div className="header">
-				<h3 className="uppercase">Available {`${type}s`}</h3>
+				<h3 className="uppercase">Available {type}</h3>
 				{buttons && (
 					<form>
 						<DinRadioButton

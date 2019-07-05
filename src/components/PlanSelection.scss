@@ -1,0 +1,54 @@
+@import "../scss/variables";
+.plan-selection {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 3rem 4rem;
+	grid-template-areas: "header header" "sub single" "button button";
+	h2 {
+		grid-area: header;
+	}
+	.subscription {
+		grid-area: sub;
+		justify-self: end;
+	}
+	.single-purchase {
+		grid-area: single;
+	}
+	.card {
+		box-sizing: border-box;
+		text-align: center;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		padding: 2.5rem 2rem;
+		max-width: 300px;
+		width: 100%;
+		border: $border-width solid $primary-color;
+		color: $primary-color;
+		cursor: pointer;
+		&.selected,
+		&:hover {
+			color: white;
+			background-color: $primary-color;
+		}
+		.info {
+			h3 {
+				font-size: 1.8rem;
+				margin-bottom: 1rem;
+			}
+			p {
+				font-weight: 400;
+				margin: 0;
+			}
+		}
+		.price {
+			margin-top: 3rem;
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+	}
+	.button {
+		grid-area: button;
+		margin: auto;
+	}
+}
