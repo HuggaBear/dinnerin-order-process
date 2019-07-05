@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./MealInfoPopup.scss";
+import { UserDataContext } from "../contexts/UserDataContext";
 
 export default function MealInfoPopup({ data, updateData, type, addSelectedMeal }) {
-	// Extract data for popup meal
-	const index = data.popupIndex;
-	const id = data[type][index].id;
-	const { title, image, description, price } = data[type][index].acf;
+	const { userData } = useContext(UserDataContext);
+
+	// Filter items if user has filtered for vegetarian
+	const items = data[type].filter(item => (userData.vegetarian ? item.acf.vegetarian : true));
+	const id = items[data.mealIndex].id;
+	const { title, image, description, price } = items[data.mealIndex].acf;
+	console.log(id);
+	console.log(title);
 	const closePopup = e => {
 		if (e.target.className === "meal-info-popup-wrapper" || e.target.className === "close")
-			updateData({ ...data, showPopup: false, popupIndex: 0 });
+			updateData({ ...data, showPopup: false, mealId: null });
 	};
 	const addMeal = (index, title, image, price, id) => {
 		addSelectedMeal(index, title, image, price, id);
-		updateData({ ...data, showPopup: false, popupIndex: 0 });
+		updateData({ ...data, showPopup: false, mealId: null });
 	};
 	return (
 		<div className="meal-info-popup-wrapper" onClick={e => closePopup(e)}>
@@ -59,7 +64,10 @@ export default function MealInfoPopup({ data, updateData, type, addSelectedMeal 
 					{price && <div className="price uppercase primary-color">{`$${price}`}</div>}
 				</div>
 				<div className="footer">
-					<button className="button uppercase" onClick={() => addMeal(index, title, image, price, id)}>
+					<button
+						className="button uppercase"
+						onClick={() => addMeal(data.mealIndex, title, image, price, id)}
+					>
 						Add{" "}
 						{type
 							.split("")

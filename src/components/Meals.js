@@ -3,7 +3,6 @@ import { UserDataContext } from "../contexts/UserDataContext";
 import "./Meals.scss";
 import axios from "axios";
 import Meal from "./Meal";
-import DinRadioButton from "./DinRadioButton";
 import MealInfoPopup from "./MealInfoPopup";
 
 export default function Meals({ type, addSelectedMeal, buttons = true }) {
@@ -13,7 +12,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 		loaded: false,
 		err: false,
 		showPopup: false,
-		popupIndex: 0
+		mealId: null
 	});
 	const { userData, updateUserData } = useContext(UserDataContext);
 
@@ -44,7 +43,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 							className="loaded"
 							title={item.acf.title}
 							image={item.acf.image}
-							onClick={() => updateData({ ...data, showPopup: true, popupIndex: index })}
+							onClick={() => updateData({ ...data, showPopup: true, mealIndex: index })}
 							price={item.acf.price}
 						/>
 					) : (
