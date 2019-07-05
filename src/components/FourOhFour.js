@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ProgressContext } from "../contexts/ProgressContext";
 import "./FourOhFour.scss";
 import { UserDataContext } from "../contexts/UserDataContext";
-export default function _404() {
+export default function FourOhFour() {
 	const { updateProgress } = useContext(ProgressContext);
 	const { userData, updateUserData } = useContext(UserDataContext);
 	console.log(userData);

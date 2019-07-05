@@ -4,21 +4,23 @@ import "./Meals.scss";
 import axios from "axios";
 import Meal from "./Meal";
 import DinRadioButton from "./DinRadioButton";
+import MealInfoPopup from "./MealInfoPopup";
 
 export default function Meals({ type, addSelectedMeal, buttons = true }) {
-	const [data, setData] = useState({
+	const [data, updateData] = useState({
 		// Type can either be meals or desserts
 		[type]: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
 		loaded: false,
-		err: false
+		err: false,
+		showPopup: false,
+		popupIndex: 0
 	});
 	const { userData, updateUserData } = useContext(UserDataContext);
-	const { vegetarian } = userData;
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await axios.get(`https://react.alphabean.co.nz/wp-json/wp/v2/${type}?per_page=100`);
-			setData(d => {
+			updateData(d => {
 				return { ...d, [type]: result.data, loaded: true };
 			});
 		};
@@ -31,7 +33,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 		<>
 			{data[type]
 				// Filter vegetarian options if loaded and vegeterian only is selected
-				.filter(item => !data.loaded || (vegetarian ? item.acf.vegetarian : true))
+				.filter(item => !data.loaded || (userData.vegetarian ? item.acf.vegetarian : true))
 				.map((item, index) =>
 					// Display meals if loaded, else display placeholders
 					data.loaded ? (
@@ -42,7 +44,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 							className="loaded"
 							title={item.acf.title}
 							image={item.acf.image}
-							onClick={addSelectedMeal}
+							onClick={() => updateData({ ...data, showPopup: true, popupIndex: index })}
 							price={item.acf.price}
 						/>
 					) : (
@@ -53,32 +55,37 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 	);
 
 	return (
-		<div className="available-meals">
-			<div className="header">
-				<h3 className="uppercase">Available {type}</h3>
-				{buttons && (
-					<form>
-						<DinRadioButton
-							name="vegetarian"
-							checked={!vegetarian}
-							value={false}
-							label="Standard Meals"
-							onChange={() => updateUserData({ ...userData, vegetarian: false })}
-							extraClasses="uppercase button-small"
-						/>
-						<DinRadioButton
-							name="vegetarian"
-							checked={vegetarian}
-							value={true}
-							label="Vegetarian meals"
-							onChange={() => updateUserData({ ...userData, vegetarian: true })}
-							extraClasses="uppercase button-small"
-						/>
-					</form>
-				)}
+		<>
+			{data.showPopup && (
+				<MealInfoPopup data={data} updateData={updateData} type={type} addSelectedMeal={addSelectedMeal} />
+			)}
+			<div className="available-meals">
+				<div className="header">
+					<h3 className="uppercase">Available {type}</h3>
+					{buttons && (
+						<form>
+							<DinRadioButton
+								name="vegetarian"
+								checked={!userData.vegetarian}
+								value={false}
+								label="Standard Meals"
+								onChange={() => updateUserData({ ...userData, vegetarian: false })}
+								extraClasses="uppercase button-small"
+							/>
+							<DinRadioButton
+								name="vegetarian"
+								checked={userData.vegetarian}
+								value={true}
+								label="Vegetarian meals"
+								onChange={() => updateUserData({ ...userData, vegetarian: true })}
+								extraClasses="uppercase button-small"
+							/>
+						</form>
+					)}
+				</div>
+				{content}
+				{errorContent}
 			</div>
-			{content}
-			{errorContent}
-		</div>
+		</>
 	);
 }
