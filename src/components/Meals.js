@@ -36,12 +36,13 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 					// Display meals if loaded, else display placeholders
 					data.loaded ? (
 						<Meal
-							key={index}
+							key={item.id}
+							index={index}
+							id={item.id}
 							className="loaded"
 							title={item.acf.title}
 							image={item.acf.image}
 							onClick={addSelectedMeal}
-							index={index}
 							price={item.acf.price}
 						/>
 					) : (

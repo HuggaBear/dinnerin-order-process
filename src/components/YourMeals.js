@@ -14,14 +14,15 @@ export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedM
 					</h3>
 				</div>
 
-				{selectedMeals.map((meal, index) => (
+				{selectedMeals.map((item, index) => (
 					<Meal
-						key={index}
-						title={meal.title}
-						image={meal.image}
+						key={item.id ? item.id : index}
+						title={item.title}
+						image={item.image}
 						onClick={removeSelectedMeal}
 						index={index}
-						className={meal.selected ? "selected" : ""}
+						className={item.selected ? "selected" : ""}
+						id={item.id}
 					/>
 				))}
 				<div className="footer">

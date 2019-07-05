@@ -15,7 +15,7 @@ export default function ProgressBar() {
 	];
 
 	//DEBUG - Start app on meal selection REMOVE
-	updateProgress(4);
+	//updateProgress(3);
 
 	return (
 		<div className="progress-bar-wrapper">

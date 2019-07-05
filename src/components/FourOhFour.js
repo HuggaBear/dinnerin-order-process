@@ -4,7 +4,8 @@ import "./FourOhFour.scss";
 import { UserDataContext } from "../contexts/UserDataContext";
 export default function _404() {
 	const { updateProgress } = useContext(ProgressContext);
-	const { updateUserData } = useContext(UserDataContext);
+	const { userData, updateUserData } = useContext(UserDataContext);
+	console.log(userData);
 	return (
 		<div className="content text-center four-oh-four">
 			<h2>It appears you are lost. Get back on track</h2>
