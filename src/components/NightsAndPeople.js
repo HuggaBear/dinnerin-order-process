@@ -43,6 +43,7 @@ export default function NightsAndPeople() {
 				<div className="radio-squares nights">
 					{nightsValues.map((value, index) => (
 						<DinRadioButton
+							type="radio"
 							key={index}
 							name="nights"
 							checked={nights === value}
@@ -56,6 +57,7 @@ export default function NightsAndPeople() {
 				<div className="radio-squares people">
 					{peopleValues.map((value, index) => (
 						<DinRadioButton
+							type="radio"
 							key={index}
 							name="people"
 							checked={people === value}

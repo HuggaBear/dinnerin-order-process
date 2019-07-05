@@ -63,24 +63,17 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 				<div className="header">
 					<h3 className="uppercase">Available {type}</h3>
 					{buttons && (
-						<form>
-							<DinRadioButton
-								name="vegetarian"
-								checked={!userData.vegetarian}
-								value={false}
-								label="Standard Meals"
-								onChange={() => updateUserData({ ...userData, vegetarian: false })}
-								extraClasses="uppercase button-small"
-							/>
-							<DinRadioButton
-								name="vegetarian"
+						<label className={`uppercase ${userData.vegetarian ? "checked" : ""}`}>
+							<input
+								type="checkbox"
+								name={"vegetarian"}
+								value={userData.vegetarian}
 								checked={userData.vegetarian}
-								value={true}
-								label="Vegetarian meals"
-								onChange={() => updateUserData({ ...userData, vegetarian: true })}
-								extraClasses="uppercase button-small"
+								onChange={() => updateUserData({ ...userData, vegetarian: !userData.vegetarian })}
 							/>
-						</form>
+							<span className="checkbox" />
+							<span className="checkbox-label">Vegetarian Menu</span>
+						</label>
 					)}
 				</div>
 				{content}

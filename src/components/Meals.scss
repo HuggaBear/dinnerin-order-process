@@ -39,4 +39,34 @@
 			}
 		}
 	}
+	input[type="checkbox"] {
+		display: none;
+	}
+	label {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 0 2rem;
+		cursor: pointer;
+		.checkbox {
+			margin: 0 1em 0 0;
+			border: 5px solid $secondary-color;
+			background-color: white;
+			width: 20px;
+			height: 20px;
+		}
+		.checkbox-label {
+			color: $secondary-color;
+		}
+		&:hover,
+		&.checked {
+			.checkbox {
+				background: $primary-color;
+				color: $primary-color;
+			}
+			.checkbox-label {
+				color: $primary-color;
+			}
+		}
+	}
 }

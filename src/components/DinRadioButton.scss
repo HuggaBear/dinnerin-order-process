@@ -1,6 +1,7 @@
 @import "../scss/variables";
 .din-radio-button {
-	input[type="radio"] {
+	input[type="radio"],
+	input[type="checkbox"] {
 		display: none;
 	}
 
