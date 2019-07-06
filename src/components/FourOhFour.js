@@ -8,7 +8,7 @@ export default function FourOhFour() {
 	console.log(userData);
 	return (
 		<div className="content text-center four-oh-four">
-			<h2>It appears you are lost. Get back on track</h2>
+			<h2>The End!</h2>
 			{/* This button resets the application */}
 			<button
 				className="uppercase button"
@@ -25,7 +25,7 @@ export default function FourOhFour() {
 					updateProgress(0);
 				}}
 			>
-				Reset
+				Again!
 			</button>
 		</div>
 	);
