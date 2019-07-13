@@ -1,20 +1,20 @@
 import React, { useContext } from "react";
 import { UserDataContext } from "../contexts/UserDataContext";
+import "./ContinueMessage.scss";
 
-export default function ContinueMessage({ continueClick }) {
+export default function ContinueMessage({ continueClick, canContinue }) {
 	const { userData } = useContext(UserDataContext);
 	const { nights, selectedMealCount } = userData;
-	const canContinue = !(nights - selectedMealCount);
 
 	return (
-		<div className="message-wrapper">
+		<div className="message-wrapper uppercase">
 			{!canContinue && (
-				<div className="error-message">
-					Please select {nights - selectedMealCount} more meal{nights - selectedMealCount > 1 && "s"}
+				<div className="continue-message">
+					Select {nights - selectedMealCount} more meal{nights - selectedMealCount > 1 && "s"} to continue
 				</div>
 			)}
 			{canContinue && (
-				<div className="continue-message">
+				<div className="continue-button">
 					<button className="uppercase button" onClick={continueClick}>
 						Continue
 					</button>

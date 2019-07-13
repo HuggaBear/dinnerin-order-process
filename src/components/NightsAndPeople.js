@@ -53,7 +53,7 @@ export default function NightsAndPeople() {
 						/>
 					))}
 				</div>
-				<h2 className="uppercase">How many people?</h2>
+				<h2 className="uppercase">For how many people?</h2>
 				<div className="radio-squares people">
 					{peopleValues.map((value, index) => (
 						<DinRadioButton

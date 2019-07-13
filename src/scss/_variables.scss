@@ -2,8 +2,7 @@ $primary-color: #00a651;
 $secondary-color: #ccc;
 $tertiary-color: goldenrod;
 
-$error-primary: #d8000c;
-$error-secondary: #ffbaba;
+$error-primary: #ffc87c;
 
 // Border width of large buttons
 $border-width: 5px;
@@ -15,3 +14,6 @@ $checkbox-size: 1.5em;
 $meal-image-height: 8rem;
 
 $prog-bar-height: 2.5rem;
+
+// Max width of site content
+$content-width: 1100px;

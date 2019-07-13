@@ -20,7 +20,13 @@ export default function SpecialDiets() {
 	return (
 		<div className="content special-diets">
 			<form onSubmit={onSubmit}>
-				<h2 className="uppercase">Are you strictly vegetarian?</h2>
+				<h2 className="uppercase">
+					Would you prefer to select{" "}
+					<span className="primary-color bold">
+						<em>only</em>
+					</span>{" "}
+					vegetarian meals?
+				</h2>
 				<div className="radio-checkboxes">
 					<label className={`uppercase ${vegetarian ? "checked" : ""}`}>
 						<input
@@ -30,8 +36,7 @@ export default function SpecialDiets() {
 							checked={vegetarian}
 							onChange={updateVegetarian}
 						/>
-						<span className="checkbox" />
-						<span className="checkbox-label">Yes</span>
+						<span className="checkbox">YES</span>
 					</label>
 					<label className={`uppercase ${!vegetarian ? "checked" : ""}`}>
 						<input
@@ -41,8 +46,7 @@ export default function SpecialDiets() {
 							checked={!vegetarian}
 							onChange={updateVegetarian}
 						/>
-						<span className="checkbox" />
-						<span className="checkbox-label">No</span>
+						<span className="checkbox">NO</span>
 					</label>
 				</div>
 				<button className="uppercase button" type="submit" value="continue">

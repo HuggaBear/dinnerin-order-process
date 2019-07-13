@@ -3,9 +3,12 @@ import "./DessertSelection.scss";
 import Meals from "./Meals";
 import YourDesserts from "./YourDesserts";
 import { UserDataContext } from "../contexts/UserDataContext";
+import ContinueMessage from "./ContinueMessage";
+import { ProgressContext } from "../contexts/ProgressContext";
 
 export default function DessertSelection() {
 	const { userData, updateUserData } = useContext(UserDataContext);
+	const { progress, updateProgress } = useContext(ProgressContext);
 	const { desserts } = userData;
 	// Add a meal to the selected desserts list
 	const addSelectedDessert = (index, title, image, price, id) => {
@@ -48,9 +51,15 @@ export default function DessertSelection() {
 			});
 		}
 	};
+
+	const continueClick = () => {
+		updateProgress(progress + 1);
+	};
+
 	return (
-		<div className="content meal-selection">
+		<div className="content dessert-selection">
 			<h2 className="header uppercase">Select desserts to go with your meal</h2>
+			<ContinueMessage continueClick={continueClick} canContinue={true} />
 			<YourDesserts selectedDesserts={desserts} removeSelectedDessert={removeSelectedDessert} />
 			<Meals type="desserts" addSelectedMeal={addSelectedDessert} buttons={false} />
 			<div className="footer" />

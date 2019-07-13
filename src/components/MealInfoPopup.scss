@@ -13,43 +13,65 @@
 	align-items: center;
 	justify-content: center;
 	z-index: 10;
+	.prev,
+	.next {
+		color: white;
+		font-size: 3rem;
+		left: 0;
+		padding: 1rem;
+		cursor: pointer;
+		&:hover {
+			color: $primary-color;
+		}
+	}
 	.meal-info-popup {
 		display: flex;
 		flex-direction: column;
 		max-width: 800px;
 		width: 100%;
-		height: 90%;
+		height: 800px;
+		max-height: 90%;
 		box-shadow: 0px 0px 10px #333;
 		box-sizing: border-box;
 		overflow: hidden;
 		background: white;
-		p {
-			margin: 0 0 1rem 0;
+
+		p,
+		td {
+			margin: 0;
+			font-size: 0.8rem;
+			line-height: 1.6em;
 		}
 		h2 {
-			font-weight: 900;
+			font-weight: 700;
+			color: $primary-color;
+			text-transform: uppercase;
 		}
-		h3 {
-			font-size: 1.8rem;
-			margin-bottom: 1rem;
+		h3,
+		th {
+			font-size: 1rem;
+			margin-bottom: 0.5rem;
+			color: $primary-color;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			text-align: left;
 		}
 		.header {
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-end;
 			align-items: center;
 			padding-left: 1rem;
 			position: relative;
 			top: 0;
-			border-bottom: 1px solid lighten($secondary-color, 10);
 			flex-shrink: 0;
 			h2 {
 				text-align: left;
 			}
 			.close {
 				align-self: flex-start;
-				padding: 0.5rem 1rem;
+				padding: 0.8rem;
 				font-size: 3rem;
-				line-height: 1em;
+				line-height: 0.5em;
 				color: $secondary-color;
 				cursor: pointer;
 				&:hover {
@@ -57,23 +79,28 @@
 				}
 			}
 		}
+		.image {
+			width: 100%;
+			max-height: 250px;
+			object-fit: cover;
+		}
 		.body {
-			padding: 1rem;
 			overflow-y: auto;
 			flex-shrink: 1;
 			flex-grow: 1;
-			flex-basis: 1;
 			display: grid;
+			padding: 2rem 2rem 0;
 			grid-template-columns: 1fr 1fr;
-			grid-gap: 1rem;
-			grid-template-areas: "img desc" "ingred ingred" "allergens allergens" "nutrition nutrition" "price price";
-			.image {
-				grid-area: img;
-				width: 100%;
+			grid-gap: 1.5rem 3rem;
+			grid-template-areas: "title title" "ingred nutrition" "allergens icons";
+
+			.title {
+				grid-area: title;
+				text-align: left;
 			}
-			.description {
-				grid-area: desc;
-			}
+			// .description {
+			// 	grid-area: desc;
+			// }
 			.ingredients {
 				grid-area: ingred;
 			}
@@ -82,25 +109,39 @@
 			}
 			.nutrition {
 				grid-area: nutrition;
+				table {
+					width: 100%;
+					th {
+						padding-bottom: 0.5rem;
+					}
+					td:last-child {
+						text-align: right;
+					}
+				}
 			}
-			.price {
-				padding-bottom: 2rem;
-				text-align: center;
+			.icons {
+				grid-area: icons;
+				margin-bottom: 2rem;
 			}
+			// .price {
+			// 	padding-bottom: 2rem;
+			// 	text-align: center;
+			// }
 		}
-		.price {
-			grid-area: price;
-			font-size: 1.5rem;
-			font-weight: bold;
-		}
+		// .price {
+		// 	grid-area: price;
+		// 	font-size: 1.5rem;
+		// 	font-weight: bold;
+		// }
 		.footer {
 			position: relative;
 			bottom: 0;
-			padding: 1rem;
 			height: 50px;
 			flex-shrink: 0;
 			border-top: 1px solid lighten($secondary-color, 10);
-			button {
+			.button {
+				background-color: $primary-color;
+				color: white;
 				max-width: 100%;
 				height: 100%;
 			}

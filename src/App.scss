@@ -1,9 +1,20 @@
 @import "/scss/classes";
 @import "/scss/variables";
+@import "/scss/mixins";
 
+html {
+	display: inline-block;
+	@include breakXs {
+		font-size: 0.8rem;
+	}
+}
 body {
 	overflow-x: hidden;
 	margin: 0;
+}
+main {
+	position: relative;
+	min-height: 100vh;
 }
 * {
 	font-family: "Fira Sans", sans-serif;
@@ -23,14 +34,14 @@ h2 {
 h3 {
 	margin: 0;
 	letter-spacing: 1px;
-	font-size: 1rem;
+	font-size: 1.2rem;
 }
 .button {
 	border: $border-width solid $primary-color;
 	background: white;
 	font-size: 1.2rem;
 	color: $primary-color;
-	font-weight: bold;
+	font-weight: 900;
 	padding: 0.5em;
 	width: 100%;
 	max-width: 300px;
@@ -39,20 +50,4 @@ h3 {
 		background: $primary-color;
 		color: white;
 	}
-}
-.error-message {
-	box-sizing: border-box;
-	text-align: center;
-	font-size: 1.2rem;
-	border: $border-width solid darken($error-primary, 5);
-	color: darken($error-primary, 5);
-	background-color: lighten($error-secondary, 10);
-	margin: auto;
-	padding: 0.5em;
-	width: 100%;
-	max-width: 300px;
-}
-.message-wrapper {
-	text-align: center;
-	margin: 2rem auto;
 }

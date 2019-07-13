@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./MealSelection.scss";
 import Meals from "./Meals";
 import YourMeals from "./YourMeals";
@@ -7,7 +7,6 @@ import { ProgressContext } from "../contexts/ProgressContext";
 import ContinueMessage from "./ContinueMessage";
 
 export default function MealSelection() {
-	const [displayError, updateDisplayError] = useState(false);
 	const { progress, updateProgress } = useContext(ProgressContext);
 	const { userData, updateUserData } = useContext(UserDataContext);
 	const { meals, nights, selectedMealCount } = userData;
@@ -41,17 +40,13 @@ export default function MealSelection() {
 
 	// Continue to next step if the user has selected all their meals
 	const continueClick = () => {
-		canContinue ? updateProgress(progress + 1) : updateDisplayError(true);
+		canContinue && updateProgress(progress + 1);
 	};
 
 	return (
 		<div className="content meal-selection">
-			<h2 className={`header uppercase ${displayError || canContinue ? "mb-0" : ""}`}>
-				Select {nights} meals for your next delivery
-			</h2>
-			{(displayError || canContinue) && (
-				<ContinueMessage continueClick={continueClick} displayError={displayError} />
-			)}
+			<h2 className={`header uppercase mb-0`}>Select {nights} meals for your next delivery</h2>
+			<ContinueMessage continueClick={continueClick} canContinue={canContinue} />
 			<YourMeals
 				selectedMeals={meals}
 				removeSelectedMeal={removeSelectedMeal}

@@ -1,0 +1,32 @@
+@import "../scss/variables";
+.continue-message {
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: 500;
+	// border: 2px solid darken($error-primary, 5);
+	color: black;
+	background-color: lighten($error-primary, 15);
+	margin: auto;
+	padding: 1em;
+	width: 100%;
+	max-width: 400px;
+}
+.message-wrapper {
+	text-align: center;
+	grid-area: continue;
+}
+.continue-button {
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 1.2rem;
+	color: black;
+	background-color: lighten($error-primary, 15);
+	margin: auto;
+	width: 100%;
+	max-width: 400px;
+	button {
+		max-width: 100%;
+		padding: 0.75em;
+	}
+}

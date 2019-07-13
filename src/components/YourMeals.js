@@ -7,7 +7,7 @@ export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedM
 			<div className="your-meals">
 				<div className="header">
 					<h3 className="uppercase">
-						Your meals:{" "}
+						Selected meals:{" "}
 						<span className="primary-color">
 							{selectedMealCount}/{nights}
 						</span>
@@ -19,10 +19,11 @@ export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedM
 						key={item.id ? item.id : index}
 						title={item.title}
 						image={item.image}
-						onClick={removeSelectedMeal}
+						removeSelectedMeal={removeSelectedMeal}
 						index={index}
 						className={item.selected ? "selected" : ""}
 						id={item.id}
+						selected={true}
 					/>
 				))}
 				<div className="footer">

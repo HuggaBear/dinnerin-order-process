@@ -1,5 +1,15 @@
+@import "../scss/mixins";
+@import "../scss/variables";
+
 .content {
-	padding: 2rem 1rem 3rem;
-	max-width: 1000px;
+	box-sizing: border-box;
+	padding: 3rem 1rem 8rem;
+	max-width: $content-width;
 	margin: 0rem auto;
+	min-height: 39rem;
+	position: relative;
+
+	@include breakXs {
+		padding: 3rem 1rem 3rem;
+	}
 }

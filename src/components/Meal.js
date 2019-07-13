@@ -1,13 +1,46 @@
 import React from "react";
 import "./Meal.scss";
-export default function Meal({ index, title, image, price, onClick, className, id }) {
+export default function Meal({
+	index,
+	title,
+	image,
+	price,
+	showPopup,
+	addSelectedMeal,
+	removeSelectedMeal,
+	className,
+	id,
+	selected
+}) {
 	return (
 		<div
-			onClick={onClick && (() => onClick(index, title, image, price, id))}
+			onClick={
+				addSelectedMeal
+					? () => addSelectedMeal(index, title, image, price, id)
+					: removeSelectedMeal
+					? () => removeSelectedMeal(index, title, image, price, id)
+					: () => {}
+			}
 			className={`single-meal ${className}`}
 			style={image && { backgroundImage: `url(${image})` }}
 		>
-			{title && <div className="title uppercase">{title}</div>}
+			{selected ? (
+				<div className="remove-from-cart" />
+			) : (
+				<div
+					className="add-to-cart"
+					onClick={addSelectedMeal && (() => addSelectedMeal(index, title, image, price, id))}
+				>
+					+
+				</div>
+			)}
+			{title && (
+				<div className="title">
+					{" "}
+					<span className="uppercase">{`${selected ? `${index + 1}. ` : ""}${title}`}</span>
+					<span className="info">i</span>
+				</div>
+			)}
 		</div>
 	);
 }

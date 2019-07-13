@@ -1,0 +1,49 @@
+@import "../scss/variables";
+.header {
+	.header-upper {
+		background: $primary-color;
+		padding: 1em;
+		display: flex;
+		justify-content: center;
+		font-weight: 500;
+		color: white;
+		font-size: 0.9rem;
+		letter-spacing: 2px;
+		span {
+			margin: 0 1em;
+		}
+	}
+	.header-lower {
+		padding: 1rem 0;
+		.inner {
+			box-sizing: border-box;
+			max-width: $content-width;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			margin: auto;
+			padding: 0 1rem;
+			grid-template-areas: ". logo button";
+		}
+		img {
+			grid-area: logo;
+			place-self: center;
+			width: 180px;
+		}
+		button {
+			grid-area: button;
+			justify-self: flex-end;
+			border: 3px solid $primary-color;
+			background-color: white;
+			color: $primary-color;
+			place-self: center right;
+			padding: 0.4em;
+			font-weight: 900;
+			font-size: 1rem;
+			cursor: pointer;
+			&:hover {
+				color: white;
+				background-color: $primary-color;
+			}
+		}
+	}
+}

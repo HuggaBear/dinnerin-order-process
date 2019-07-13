@@ -2,66 +2,114 @@ import React, { useContext } from "react";
 import "./MealInfoPopup.scss";
 import { UserDataContext } from "../contexts/UserDataContext";
 
-export default function MealInfoPopup({ data, updateData, type, addSelectedMeal }) {
+export default function MealInfoPopup({ data, updateData, type, addSelectedMeal, nextMeal, prevMeal }) {
 	const { userData } = useContext(UserDataContext);
 
 	// Filter items if user has filtered for vegetarian
 	const items = data[type].filter(item => (userData.vegetarian ? item.acf.vegetarian : true));
 	const id = items[data.mealIndex].id;
-	const { title, image, description, price } = items[data.mealIndex].acf;
-	console.log(id);
-	console.log(title);
+
+	// Extract data from acf fields
+	const { title, image, price } = items[data.mealIndex].acf;
+
+	// Close the popup only if exactly the wrapper or the close button is clicked
+	// Must specify this otherwise clicking on anything within the wrapper will close the popup
 	const closePopup = e => {
 		if (e.target.className === "meal-info-popup-wrapper" || e.target.className === "close")
-			updateData({ ...data, showPopup: false, mealId: null });
+			updateData({ ...data, showPopup: false, mealIndex: null });
 	};
+
+	// Add the meal to the users existing meals
 	const addMeal = (index, title, image, price, id) => {
 		addSelectedMeal(index, title, image, price, id);
-		updateData({ ...data, showPopup: false, mealId: null });
+		updateData({ ...data, showPopup: false, mealIndex: null });
 	};
 	return (
 		<div className="meal-info-popup-wrapper" onClick={e => closePopup(e)}>
+			<span className="prev" onClick={prevMeal}>
+				◄
+			</span>
 			<div className="meal-info-popup">
 				<div className="header">
-					<h2>
-						{title}
-						{price && <span className="price primary-color"> - {`$${price}`}</span>}
-					</h2>
 					<div className="close" onClick={e => closePopup(e)}>
 						×
 					</div>
 				</div>
+				<img className="image" src={image} alt={""} />
 				<div className="body">
-					<img className="image" src={image} alt={""} />
-					<div className="description">
+					<h2 className="title">
+						{title}
+						{/* {price && <span className="price primary-color"> - {`$${price}`}</span>} */}
+					</h2>
+					{/* <div className="description">
 						<h3>Description</h3>
 						<div dangerouslySetInnerHTML={{ __html: description }} />
-					</div>
+					</div> */}
 					<div className="ingredients">
 						<h3>Ingredients</h3>
 						<p>
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure, ipsum. Minima atque cum
-							rerum alias vitae recusandae molestiae! Perspiciatis sunt vero voluptates! Hic totam
-							voluptate sed quis accusamus necessitatibus ad!
-						</p>
-					</div>
-					<div className="allergens">
-						<h3>Allergens</h3>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat voluptate dolorum, esse
-							dolores doloremque nam eligendi repudiandae fuga amet iste vitae nulla incidunt autem a iure
-							accusamus velit, id explicabo!
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+							tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
+							nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo con
 						</p>
 					</div>
 					<div className="nutrition">
-						<h3>Nutrition</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo voluptatem eum totam
-							excepturi, cupiditate minima dolorem temporibus soluta laborum praesentium nam eaque vel
-							laudantium voluptatibus quae laboriosam qui assumenda iusto?
-						</p>
+						<table>
+							<thead>
+								<tr>
+									<th>Nutrition</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td className="uppercase">Energy</td>
+									<td>2000Kj</td>
+								</tr>
+								<tr>
+									<td className="uppercase">Fat</td>
+									<td>20g</td>
+								</tr>
+								<tr>
+									<td className="uppercase">Saturated fat</td>
+									<td>5g</td>
+								</tr>
+								<tr>
+									<td className="uppercase">Sodium</td>
+									<td>1500mg</td>
+								</tr>
+								<tr>
+									<td className="uppercase">Total carbohydrates</td>
+									<td>50g</td>
+								</tr>
+								<tr>
+									<td className="uppercase">Total sugars</td>
+									<td>20g</td>
+								</tr>
+								<tr>
+									<td className="uppercase">Protein</td>
+									<td>10g</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
-					{price && <div className="price uppercase primary-color">{`$${price}`}</div>}
+					<div className="allergens">
+						<h3>Allergens</h3>
+						<p>Contains Milk, Egg and Soy</p>
+					</div>
+					<div className="icons">
+						<img
+							alt=""
+							style={{
+								background: "grey",
+								width: "50px",
+								height: "50px",
+								marginRight: "1rem"
+							}}
+						/>
+						<img alt="" style={{ background: "grey", width: "50px", height: "50px" }} />
+					</div>
+
+					{/* {price && <div className="price uppercase primary-color">{`$${price}`}</div>} */}
 				</div>
 				<div className="footer">
 					<button
@@ -76,6 +124,9 @@ export default function MealInfoPopup({ data, updateData, type, addSelectedMeal 
 					</button>
 				</div>
 			</div>
+			<span className="next" onClick={nextMeal}>
+				►
+			</span>
 		</div>
 	);
 }

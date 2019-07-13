@@ -1,10 +1,13 @@
 {
 	"name": "frontend",
 	"version": "0.1.0",
-	"homepage": "https://react.dinnerin.co.nz/react-app/",
+	"homepage": "https://order.dinnerin.co.nz/",
 	"private": true,
 	"dependencies": {
 		"@babel/core": "7.4.3",
+		"@fortawesome/fontawesome-svg-core": "^1.2.19",
+		"@fortawesome/free-solid-svg-icons": "^5.9.0",
+		"@fortawesome/react-fontawesome": "^0.1.4",
 		"@svgr/webpack": "4.1.0",
 		"@typescript-eslint/eslint-plugin": "1.6.0",
 		"@typescript-eslint/parser": "1.6.0",
@@ -82,7 +85,6 @@
 			"last 1 safari version"
 		]
 	},
-	"proxy": "https://react.alphabean.co.nz",
 	"jest": {
 		"collectCoverageFrom": [
 			"src/**/*.{js,jsx,ts,tsx}",

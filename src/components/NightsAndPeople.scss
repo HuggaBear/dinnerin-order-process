@@ -7,15 +7,28 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		padding: inherit;
+		box-sizing: border-box;
+		& > h2:first-child {
+			margin-top: 1.5rem;
+		}
+		button {
+			margin-top: auto;
+		}
 	}
 
 	.radio-squares {
 		font-size: 2rem;
-		margin-bottom: 5rem;
+		margin-bottom: 2rem;
 		display: flex;
 		justify-content: center;
 		flex-wrap: wrap;
-		label {
+		span {
 			margin-left: $checkbox-size / 2;
 			margin-right: $checkbox-size / 2;
 			margin-bottom: $checkbox-size / 2;

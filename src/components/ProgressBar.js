@@ -6,7 +6,7 @@ export default function ProgressBar() {
 
 	// All possible application states. Should be in sync with the components in Content.js
 	const steps = [
-		"Nights & People",
+		"Nights & Meals",
 		"Special Diets",
 		"Meal Selection",
 		"Dessert Selection",
@@ -15,7 +15,7 @@ export default function ProgressBar() {
 	];
 
 	//DEBUG - Start app on meal selection REMOVE
-	//updateProgress(2);
+	// updateProgress(3);
 
 	return (
 		<div className="progress-bar-wrapper">

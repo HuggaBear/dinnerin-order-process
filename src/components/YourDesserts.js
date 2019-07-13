@@ -11,7 +11,7 @@ export default function YourDesserts({ selectedDesserts, removeSelectedDessert }
 		<>
 			<div className="your-desserts">
 				<div className="header">
-					<h3 className="uppercase">Your desserts</h3>
+					<h3 className="uppercase">Selected desserts</h3>
 				</div>
 				{selectedDesserts.map((item, index) => (
 					<div className="selected-dessert primary-color" key={item.id}>
