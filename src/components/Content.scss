@@ -3,13 +3,15 @@
 
 .content {
 	box-sizing: border-box;
-	padding: 3rem 1rem 8rem;
+	padding: 3rem 1rem 10rem;
 	max-width: $content-width;
 	margin: 0rem auto;
-	min-height: 39rem;
+	min-height: 41rem;
 	position: relative;
-
+	@include breakMd {
+		padding-top: 2rem;
+	}
 	@include breakXs {
-		padding: 3rem 1rem 3rem;
+		min-height: 2.5rem;
 	}
 }

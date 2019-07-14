@@ -1,28 +1,48 @@
 @import "../scss/variables";
+@import "../scss/mixins";
 
 .your-meals {
 	display: grid;
-	grid-template-columns: 1fr;
-	//grid-template-rows: 42px auto;
 	align-content: start;
 	grid-gap: 1rem;
 	overflow-x: hidden;
-	overflow-y: show;
+	overflow-y: auto;
 	padding-right: 5px;
-	position: sticky;
-	top: $prog-bar-height + 1rem;
 	grid-area: yourmeals;
-	max-height: 629px;
+	max-height: 648px;
+	background-color: white;
+	z-index: 999;
+	grid-template-columns: 1fr;
+	grid-template-areas: "header";
+	@include breakMd {
+		max-height: 3.55rem;
+		overflow: hidden;
+		position: sticky;
+		top: 0;
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "header header";
+		&.expanded {
+			max-height: 412px;
+			border-bottom: 1px solid black;
+			height: 100%;
+			overflow-y: auto;
+		}
+	}
 	> .header {
-		box-sizing: border-box;
-		padding: 0 0 1rem 0;
+		grid-area: header;
+		padding: 1rem 0 1rem 0;
 		border-bottom: 1px solid black;
 		position: sticky;
 		top: 0;
 		background-color: white;
 		align-items: center;
+		justify-content: space-between;
 		display: flex;
-		height: 50px;
+		height: 2.5rem;
+		z-index: 10;
+		@include breakMd {
+			padding: 0.5rem 0;
+		}
 		h3 {
 			line-height: 1.5em;
 		}
@@ -30,5 +50,12 @@
 	> .footer {
 		position: sticky;
 		bottom: 0;
+		text-align: center;
+		@include breakMd {
+			display: none;
+		}
+		button {
+			max-width: 100%;
+		}
 	}
 }

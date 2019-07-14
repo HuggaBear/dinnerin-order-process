@@ -1,32 +1,47 @@
 @import "../scss/variables";
-.continue-message {
-	box-sizing: border-box;
-	text-align: center;
-	font-size: 1.2rem;
-	font-weight: 500;
-	// border: 2px solid darken($error-primary, 5);
-	color: black;
-	background-color: lighten($error-primary, 15);
-	margin: auto;
-	padding: 1em;
-	width: 100%;
-	max-width: 400px;
-}
+@import "../scss/mixins";
+
 .message-wrapper {
 	text-align: center;
 	grid-area: continue;
-}
-.continue-button {
-	box-sizing: border-box;
-	text-align: center;
-	font-size: 1.2rem;
-	color: black;
-	background-color: lighten($error-primary, 15);
-	margin: auto;
-	width: 100%;
-	max-width: 400px;
-	button {
+	background: white;
+	@include breakMd {
 		max-width: 100%;
-		padding: 0.75em;
+		position: sticky;
+		bottom: 0;
+		z-index: 999;
+		padding: 1rem 0;
+	}
+	.continue-message {
+		box-sizing: border-box;
+		text-align: center;
+		font-size: 1.2rem;
+		font-weight: 500;
+		color: black;
+		background-color: lighten($error-primary, 15);
+		margin: auto;
+		padding: 1em;
+		width: 100%;
+		max-width: 400px;
+		@include breakMd {
+			max-width: 100%;
+		}
+	}
+	.continue-button {
+		box-sizing: border-box;
+		text-align: center;
+		font-size: 1.2rem;
+		color: black;
+		background-color: lighten($error-primary, 15);
+		margin: auto;
+		width: 100%;
+		max-width: 400px;
+		@include breakMd {
+			max-width: 100%;
+		}
+		button {
+			max-width: 100%;
+			padding: 0.75em;
+		}
 	}
 }

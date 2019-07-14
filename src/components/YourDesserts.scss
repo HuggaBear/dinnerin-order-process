@@ -1,4 +1,5 @@
 @import "../scss/variables";
+@import "../scss/mixins";
 
 .your-desserts {
 	display: grid;
@@ -8,20 +9,42 @@
 	grid-gap: 0rem;
 	overflow-x: hidden;
 	overflow-y: show;
-	padding-right: 5px;
 	position: sticky;
-	top: $prog-bar-height + 1rem;
+	top: 0;
 	grid-area: yourmeals;
 	max-height: 528px;
+	grid-template-areas: "header";
+	z-index: 999;
+	background: white;
+	@include breakMd {
+		max-height: 3.55rem;
+		overflow: hidden;
+		position: sticky;
+		top: 0;
+		// grid-template-columns: 1fr 1fr;
+		// grid-template-areas: "header header";
+		&.expanded {
+			max-height: 412px;
+			border-bottom: 1px solid black;
+			height: 100%;
+			overflow-y: auto;
+		}
+	}
 	> .header {
-		box-sizing: border-box;
-		padding: 0 0 1rem 0;
+		grid-area: header;
+		padding: 1rem 0 1rem 0;
 		border-bottom: 1px solid black;
 		position: sticky;
 		top: 0;
 		background-color: white;
 		align-items: center;
+		justify-content: space-between;
 		display: flex;
+		height: 2.5rem;
+		z-index: 10;
+		@include breakMd {
+			padding: 0.5rem 0;
+		}
 		h3 {
 			line-height: 1.5em;
 		}
@@ -31,6 +54,11 @@
 		bottom: 0;
 		background: white;
 		margin-top: auto;
+		button {
+			@include breakMd {
+				display: none;
+			}
+		}
 		.subtotal {
 			border-top: 1px solid black;
 			font-size: 1.2rem;

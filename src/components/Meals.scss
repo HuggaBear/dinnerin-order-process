@@ -1,4 +1,5 @@
 @import "../scss/variables";
+@import "../scss/mixins";
 .available-meals {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -6,18 +7,26 @@
 	grid-template-areas: "header header header";
 	grid-gap: 1rem;
 	grid-area: Meals;
+	@include breakSm {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas: "header header";
+	}
 	.header {
 		grid-area: header;
-		box-sizing: border-box;
 		position: sticky;
-		top: $prog-bar-height + 1rem;
+		// top: $prog-bar-height + 1rem;
+		top: 0;
 		background-color: white;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0 0 1rem 0;
+		padding: 1rem 0 1rem 0;
 		border-bottom: 1px solid black;
-		height: 50px;
+		height: 2.5rem;
+		@include breakMd {
+			padding: 0.5rem 0;
+			top: 3.55rem;
+		}
 		h3 {
 			line-height: 1.5em;
 		}
@@ -44,6 +53,10 @@
 			color: $primary-color;
 			border: 2px solid $primary-color;
 			background-color: white;
+			@include breakMd {
+				width: 170px;
+				padding: 0.3em 0em;
+			}
 		}
 		.checkbox-label {
 			color: $secondary-color;

@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./YourMeals.scss";
 import Meal from "./Meal";
 export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedMealCount, nights, continueClick }) {
+	const [expanded, updateExpanded] = useState(false);
 	return (
 		<>
-			<div className="your-meals">
+			<div className={`your-meals ${expanded ? "expanded" : ""}`}>
 				<div className="header">
 					<h3 className="uppercase">
 						Selected meals:{" "}
 						<span className="primary-color">
 							{selectedMealCount}/{nights}
 						</span>
+					</h3>
+					<h3 className={`uppercase hide-lg pointer`} onClick={() => updateExpanded(!expanded)}>
+						{expanded ? "Hide" : "Show"}
 					</h3>
 				</div>
 

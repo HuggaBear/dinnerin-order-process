@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 .uppercase {
 	text-transform: uppercase;
 }
@@ -10,4 +11,13 @@
 }
 .bold {
 	font-weight: 900;
+}
+.hide-lg {
+	display: none;
+	@include breakMd {
+		display: block;
+	}
+}
+.pointer {
+	cursor: pointer;
 }

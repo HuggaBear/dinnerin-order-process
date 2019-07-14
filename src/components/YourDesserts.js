@@ -1,17 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./YourDesserts.scss";
 import { ProgressContext } from "../contexts/ProgressContext";
 
 export default function YourDesserts({ selectedDesserts, removeSelectedDessert }) {
 	const { progress, updateProgress } = useContext(ProgressContext);
+	const [expanded, updateExpanded] = useState(false);
+
 	const subtotal = selectedDesserts
 		.reduce((total, current) => total + parseFloat(current.price * current.quantity), 0)
 		.toFixed(2);
 	return (
 		<>
-			<div className="your-desserts">
-				<div className="header">
+			<div className={`your-desserts ${expanded ? "expanded" : ""}`}>
+				<div className={`header`}>
 					<h3 className="uppercase">Selected desserts</h3>
+					<h3 className={`uppercase hide-lg pointer`} onClick={() => updateExpanded(!expanded)}>
+						{expanded ? "Hide" : "Show"}
+					</h3>
 				</div>
 				{selectedDesserts.map((item, index) => (
 					<div className="selected-dessert primary-color" key={item.id}>

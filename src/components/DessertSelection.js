@@ -62,7 +62,6 @@ export default function DessertSelection() {
 			<ContinueMessage continueClick={continueClick} canContinue={true} />
 			<YourDesserts selectedDesserts={desserts} removeSelectedDessert={removeSelectedDessert} />
 			<Meals type="desserts" addSelectedMeal={addSelectedDessert} buttons={false} />
-			<div className="footer" />
 		</div>
 	);
 }

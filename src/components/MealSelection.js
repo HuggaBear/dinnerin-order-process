@@ -55,7 +55,6 @@ export default function MealSelection() {
 				continueClick={continueClick}
 			/>
 			<Meals addSelectedMeal={addSelectedMeal} type="meals" />
-			<div className="footer" />
 		</div>
 	);
 }
