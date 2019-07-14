@@ -11,7 +11,7 @@
 	grid-area: yourmeals;
 	max-height: 648px;
 	background-color: white;
-	z-index: 999;
+	z-index: 10;
 	grid-template-columns: 1fr;
 	grid-template-areas: "header";
 	@include breakMd {

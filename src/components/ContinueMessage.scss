@@ -9,7 +9,7 @@
 		max-width: 100%;
 		position: sticky;
 		bottom: 0;
-		z-index: 999;
+		z-index: 1;
 		padding: 1rem 0;
 	}
 	.continue-message {
@@ -25,6 +25,9 @@
 		max-width: 400px;
 		@include breakMd {
 			max-width: 100%;
+		}
+		@include breakSm {
+			font-size: 1.1rem;
 		}
 	}
 	.continue-button {

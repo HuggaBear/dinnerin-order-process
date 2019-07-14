@@ -6,6 +6,7 @@ import Content from "./components/Content";
 import UserDataContextProvider from "./contexts/UserDataContext";
 import ProgressContextProvider from "./contexts/ProgressContext";
 import Header from "./components/Header";
+import PopupContextProvider from "./contexts/PopupContext";
 function App() {
 	return (
 		<main>
@@ -13,7 +14,9 @@ function App() {
 			<ProgressContextProvider>
 				<ProgressBar />
 				<UserDataContextProvider>
-					<Content />
+					<PopupContextProvider>
+						<Content />
+					</PopupContextProvider>
 				</UserDataContextProvider>
 			</ProgressContextProvider>
 			<Footer />

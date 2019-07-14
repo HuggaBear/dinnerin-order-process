@@ -14,15 +14,13 @@
 	grid-area: yourmeals;
 	max-height: 528px;
 	grid-template-areas: "header";
-	z-index: 999;
+	z-index: 10;
 	background: white;
 	@include breakMd {
-		max-height: 3.55rem;
+		max-height: 3.57rem;
 		overflow: hidden;
 		position: sticky;
 		top: 0;
-		// grid-template-columns: 1fr 1fr;
-		// grid-template-areas: "header header";
 		&.expanded {
 			max-height: 412px;
 			border-bottom: 1px solid black;

@@ -1,29 +1,40 @@
 import React, { useContext } from "react";
 import "./MealInfoPopup.scss";
 import { UserDataContext } from "../contexts/UserDataContext";
+import { PopupContext } from "../contexts/PopupContext";
 
-export default function MealInfoPopup({ data, updateData, type, addSelectedMeal, nextMeal, prevMeal }) {
-	const { userData } = useContext(UserDataContext);
-
+export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals }) {
+	const { popup, updatePopup } = useContext(PopupContext);
+	console.log(popup);
 	// Filter items if user has filtered for vegetarian
-	const items = data[type].filter(item => (userData.vegetarian ? item.acf.vegetarian : true));
-	const id = items[data.mealIndex].id;
+	const id = theMeals[popup.mealIndex].id;
 
 	// Extract data from acf fields
-	const { title, image, price } = items[data.mealIndex].acf;
+	const { title, image, price } = theMeals[popup.mealIndex].acf;
 
 	// Close the popup only if exactly the wrapper or the close button is clicked
 	// Must specify this otherwise clicking on anything within the wrapper will close the popup
 	const closePopup = e => {
 		if (e.target.className === "meal-info-popup-wrapper" || e.target.className === "close")
-			updateData({ ...data, showPopup: false, mealIndex: null });
+			updatePopup({ showPopup: false, mealIndex: null });
 	};
 
 	// Add the meal to the users existing meals
 	const addMeal = (index, title, image, price, id) => {
 		addSelectedMeal(index, title, image, price, id);
-		updateData({ ...data, showPopup: false, mealIndex: null });
+		updatePopup({ showPopup: false, mealIndex: null });
 	};
+
+	const nextMeal = () =>
+		popup.mealIndex < theMeals.length - 1
+			? updatePopup({ ...popup, mealIndex: popup.mealIndex + 1 })
+			: updatePopup({ ...popup, mealIndex: 0 });
+
+	const prevMeal = () =>
+		popup.mealIndex === 0
+			? updatePopup({ ...popup, mealIndex: theMeals.length - 1 })
+			: updatePopup({ ...popup, mealIndex: popup.mealIndex - 1 });
+
 	return (
 		<div className="meal-info-popup-wrapper" onClick={e => closePopup(e)}>
 			<span className="prev" onClick={prevMeal}>

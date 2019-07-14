@@ -1,39 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
+
 import "./Meal.scss";
+import { PopupContext } from "../contexts/PopupContext";
 export default function Meal({
 	index,
 	title,
 	image,
 	price,
-	showPopup,
 	addSelectedMeal,
 	removeSelectedMeal,
 	className,
 	id,
 	selected
 }) {
+	const { updatePopup } = useContext(PopupContext);
+
+	const mealClick = e => {
+		switch (e.target.className) {
+			case "add-to-cart":
+				if (addSelectedMeal) {
+					addSelectedMeal(index, title, image, price, id);
+				} else if (removeSelectedMeal) {
+					removeSelectedMeal(index, title, image, price, id);
+				}
+				break;
+			default:
+				updatePopup({ showPopup: true, mealIndex: index });
+		}
+	};
 	return (
 		<div
-			onClick={
-				addSelectedMeal
-					? () => addSelectedMeal(index, title, image, price, id)
-					: removeSelectedMeal
-					? () => removeSelectedMeal(index, title, image, price, id)
-					: () => {}
-			}
+			onClick={mealClick}
 			className={`single-meal ${className}`}
 			style={image && { backgroundImage: `url(${image})` }}
 		>
-			{selected ? (
-				<div className="remove-from-cart" />
-			) : (
-				<div
-					className="add-to-cart"
-					onClick={addSelectedMeal && (() => addSelectedMeal(index, title, image, price, id))}
-				>
-					+
-				</div>
-			)}
+			{selected ? <div className="remove-from-cart" /> : <div className="add-to-cart">+</div>}
 			{title && (
 				<div className="title">
 					{" "}

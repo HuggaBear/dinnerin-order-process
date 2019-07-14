@@ -54,8 +54,10 @@
 			border: 2px solid $primary-color;
 			background-color: white;
 			@include breakMd {
-				width: 170px;
-				padding: 0.3em 0em;
+				padding: 0.3em 0.1em;
+			}
+			@include breakXs {
+				width: 130px;
 			}
 		}
 		.checkbox-label {

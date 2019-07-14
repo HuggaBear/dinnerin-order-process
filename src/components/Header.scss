@@ -1,4 +1,5 @@
 @import "../scss/variables";
+@import "../scss/mixins";
 .header {
 	.header-upper {
 		background: $primary-color;
@@ -9,12 +10,23 @@
 		color: white;
 		font-size: 0.9rem;
 		letter-spacing: 2px;
+		@include breakXs {
+			flex-direction: column;
+			align-items: center;
+			padding: 0;
+		}
 		span {
 			margin: 0 1em;
+			@include breakXs {
+				margin: 0.5em;
+			}
 		}
 	}
 	.header-lower {
 		padding: 1rem 0;
+		@include breakSm {
+			padding: 0.8rem 0;
+		}
 		.inner {
 			box-sizing: border-box;
 			max-width: $content-width;
@@ -23,11 +35,20 @@
 			margin: auto;
 			padding: 0 1rem;
 			grid-template-areas: ". logo button";
+			@include breakXs {
+				grid-template-columns: repeat(2, 1fr);
+
+				grid-template-areas: "logo button";
+			}
 		}
 		img {
 			grid-area: logo;
 			place-self: center;
 			width: 180px;
+			@include breakSm {
+				place-self: start;
+				width: 130px;
+			}
 		}
 		button {
 			grid-area: button;

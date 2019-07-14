@@ -1,11 +1,8 @@
 @import "../scss/variables";
+@import "../scss/mixins";
 .progress-bar-wrapper {
-	// margin-top: 3rem;
-	// position: sticky;
-	// top: -1px;
 	z-index: 10;
 	background: white;
-	// padding-bottom: 1.04rem;
 }
 .progress-bar {
 	font-size: 0.7rem;
@@ -16,6 +13,7 @@
 	letter-spacing: 2px;
 	min-height: $prog-bar-height;
 	display: flex;
+	padding: 0 1rem;
 	.steps {
 		height: 100%;
 		padding: 0;
@@ -24,10 +22,28 @@
 		justify-content: center;
 		list-style-position: inside;
 		width: 100%;
+		@include breakMd {
+			width: 45rem;
+		}
+		@include breakSm {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			width: 24rem;
+		}
 	}
 	.step {
 		padding: 0.7rem 0;
-
+		@include breakMd {
+			display: flex;
+			align-items: center;
+		}
+		@include breakSm {
+			&:last-child {
+				max-width: 30px;
+			}
+			// display: flex;
+			// align-items: center;
+		}
 		&.complete {
 			color: $tertiary-color;
 			&:hover {
@@ -42,6 +58,12 @@
 			font-size: 0.8em;
 			margin-left: 1rem;
 			margin-right: 1rem;
+			@include breakMd {
+				margin-right: 1.8rem;
+			}
+			@include breakSm {
+				margin-right: 1.5rem;
+			}
 		}
 		&:last-child:after {
 			display: none;

@@ -27,6 +27,9 @@ h2 {
 	margin-bottom: 0;
 	font-weight: 500;
 	letter-spacing: 1px;
+	@include breakMd {
+		font-size: 1.7rem;
+	}
 	&.mb-0 {
 		margin-bottom: 0;
 	}
@@ -35,6 +38,9 @@ h3 {
 	margin: 0;
 	letter-spacing: 1px;
 	font-size: 1.2rem;
+	@include breakSm {
+		font-size: 0.9rem;
+	}
 }
 .button {
 	border: $border-width solid $primary-color;

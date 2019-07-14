@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { ProgressContext } from "../contexts/ProgressContext";
+import { PopupContext } from "../contexts/PopupContext";
 import "./Meals.scss";
 import axios from "axios";
 import Meal from "./Meal";
@@ -11,30 +12,17 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 		// An array of meal objects. These can currently be of type dessert or meal
 		[type]: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
 		loaded: false,
-		err: false,
-		showPopup: false,
-		mealIndex: null
+		err: false
 	});
 	const { userData, updateUserData } = useContext(UserDataContext);
 	const { progress } = useContext(ProgressContext);
-
+	const { popup } = useContext(PopupContext);
 	// If the user has selected vegetarian only options, we must first filter the meals (only if not on the desserts page)
 	const theMeals = data[type].filter(
 		item => !data.loaded || type === "desserts" || (userData.vegetarian ? item.acf.vegetarian : true)
 	);
 
-	// Used by the next button in MealInfoPopup to go to the next meal
-	const nextMeal = () =>
-		data.mealIndex < theMeals.length - 1
-			? updateData({ ...data, mealIndex: data.mealIndex + 1 })
-			: updateData({ ...data, mealIndex: 0 });
-
-	// Used by the prev button in MealInfoPopup to go th the prev meal
-	const prevMeal = () =>
-		data.mealIndex === 0
-			? updateData({ ...data, mealIndex: theMeals.length - 1 })
-			: updateData({ ...data, mealIndex: data.mealIndex - 1 });
-
+	// Fetch meal/dessert data on mount. Type can be meals or desserts
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await axios.get(`https://react.alphabean.co.nz/wp-json/wp/v2/${type}?per_page=100`);
@@ -59,7 +47,6 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 						className="loaded"
 						title={item.acf.title}
 						image={item.acf.image}
-						showPopup={() => updateData({ ...data, showPopup: true, mealIndex: index })}
 						addSelectedMeal={addSelectedMeal}
 						price={item.acf.price}
 					/>
@@ -72,14 +59,13 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 
 	return (
 		<>
-			{data.showPopup && (
+			{popup.showPopup && (
 				<MealInfoPopup
 					data={data}
 					updateData={updateData}
 					type={type}
 					addSelectedMeal={addSelectedMeal}
-					nextMeal={nextMeal}
-					prevMeal={prevMeal}
+					theMeals={theMeals}
 				/>
 			)}
 			<div className="available-meals">

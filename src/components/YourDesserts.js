@@ -13,7 +13,12 @@ export default function YourDesserts({ selectedDesserts, removeSelectedDessert }
 		<>
 			<div className={`your-desserts ${expanded ? "expanded" : ""}`}>
 				<div className={`header`}>
-					<h3 className="uppercase">Selected desserts</h3>
+					<h3 className="uppercase">
+						Selected desserts:{" "}
+						<span className="primary-color">
+							{selectedDesserts.reduce((total, current) => total + current.quantity, 0)}
+						</span>
+					</h3>
 					<h3 className={`uppercase hide-lg pointer`} onClick={() => updateExpanded(!expanded)}>
 						{expanded ? "Hide" : "Show"}
 					</h3>
