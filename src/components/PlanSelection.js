@@ -17,13 +17,10 @@ export default function PlanSelection() {
 				const result = await axios.get(
 					`http://localhost:8081/api/dinnerin/products?nights=${nights}&people=${people}`
 				);
-				console.log(result.data);
-				result.data.map(item => {
-					console.log(item.slug);
+
+				updateData(d => {
+					return { subPrice: result.data, singlePrice: result.data };
 				});
-				// updateData(d => {
-				// 	return { subPrice: result.data, singlePrice: result.data };
-				// });
 			} catch (err) {
 				console.log(err);
 			}

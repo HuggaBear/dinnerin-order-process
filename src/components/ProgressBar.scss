@@ -13,7 +13,10 @@
 	letter-spacing: 2px;
 	min-height: $prog-bar-height;
 	display: flex;
-	padding: 0 1rem;
+	padding: 0 1.2em;
+	@include breakXs {
+		font-size: 0.6rem;
+	}
 	.steps {
 		height: 100%;
 		padding: 0;
@@ -28,11 +31,12 @@
 		@include breakSm {
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
-			width: 24rem;
+			max-width: 22rem;
+			width: 100%;
 		}
 	}
 	.step {
-		padding: 0.7rem 0;
+		padding: 1em 0;
 		@include breakMd {
 			display: flex;
 			align-items: center;

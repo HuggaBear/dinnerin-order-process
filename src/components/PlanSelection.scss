@@ -1,18 +1,30 @@
 @import "../scss/variables";
+@import "../scss/mixins";
 .plan-selection {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 3rem 4rem;
 	grid-template-areas: "header header" "sub single" "button button";
+	@include breakMd {
+		grid-gap: 2rem;
+		grid-template-columns: 1fr;
+		grid-template-areas: "header" "sub" "single" "button";
+	}
 	h2 {
 		grid-area: header;
 	}
 	.subscription {
 		grid-area: sub;
 		justify-self: end;
+		@include breakMd {
+			justify-self: center;
+		}
 	}
 	.single-purchase {
 		grid-area: single;
+		@include breakMd {
+			justify-self: center;
+		}
 	}
 	.card {
 		box-sizing: border-box;

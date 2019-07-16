@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./YourMeals.scss";
 import Meal from "./Meal";
-import { PopupContext } from "../contexts/PopupContext";
 export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedMealCount, nights, continueClick }) {
 	const [expanded, updateExpanded] = useState(false);
 	return (

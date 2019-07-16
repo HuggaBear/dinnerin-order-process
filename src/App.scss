@@ -4,9 +4,6 @@
 
 html {
 	display: inline-block;
-	@include breakXs {
-		font-size: 0.8rem;
-	}
 }
 body {
 	overflow-x: hidden;
@@ -38,7 +35,7 @@ h3 {
 	margin: 0;
 	letter-spacing: 1px;
 	font-size: 1.2rem;
-	@include breakSm {
+	@include breakXs {
 		font-size: 0.9rem;
 	}
 }
@@ -57,4 +54,11 @@ h3 {
 		background: $primary-color;
 		color: white;
 	}
+}
+
+// Loading screens
+.loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

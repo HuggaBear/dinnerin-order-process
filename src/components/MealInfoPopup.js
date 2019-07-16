@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import "./MealInfoPopup.scss";
-import { UserDataContext } from "../contexts/UserDataContext";
 import { PopupContext } from "../contexts/PopupContext";
 
 export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals }) {
 	const { popup, updatePopup } = useContext(PopupContext);
-	console.log(popup);
 	// Filter items if user has filtered for vegetarian
 	const id = theMeals[popup.mealIndex].id;
 

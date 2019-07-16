@@ -14,18 +14,18 @@ export default function Meal({
 	selected
 }) {
 	const { updatePopup } = useContext(PopupContext);
-
+	// If the user clicks on the meal anywhere except the add/remove button, show the popup
 	const mealClick = e => {
 		switch (e.target.className) {
 			case "add-to-cart":
-				if (addSelectedMeal) {
-					addSelectedMeal(index, title, image, price, id);
-				} else if (removeSelectedMeal) {
-					removeSelectedMeal(index, title, image, price, id);
-				}
+				addSelectedMeal(index, title, image, price, id);
+				break;
+			case "remove-from-cart":
+				removeSelectedMeal(index, title, image, price, id);
 				break;
 			default:
-				updatePopup({ showPopup: true, mealIndex: index });
+				// Do not display the popup for a placeholder meal (not loaded). Only loaded meals have titles.
+				title && updatePopup({ showPopup: true, mealIndex: index });
 		}
 	};
 	return (
@@ -34,7 +34,13 @@ export default function Meal({
 			className={`single-meal ${className}`}
 			style={image && { backgroundImage: `url(${image})` }}
 		>
-			{selected ? <div className="remove-from-cart" /> : <div className="add-to-cart">+</div>}
+			{title && removeSelectedMeal ? (
+				<div className="remove-from-cart">-</div>
+			) : title && addSelectedMeal ? (
+				<div className="add-to-cart">+</div>
+			) : (
+				<></>
+			)}
 			{title && (
 				<div className="title">
 					{" "}

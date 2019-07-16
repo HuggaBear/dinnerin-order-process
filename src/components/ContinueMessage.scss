@@ -10,8 +10,9 @@
 		position: sticky;
 		bottom: 0;
 		z-index: 1;
-		padding: 1rem 0;
+		padding: 0.5rem 0;
 	}
+
 	.continue-message {
 		box-sizing: border-box;
 		text-align: center;
@@ -23,11 +24,13 @@
 		padding: 1em;
 		width: 100%;
 		max-width: 400px;
+
 		@include breakMd {
 			max-width: 100%;
 		}
-		@include breakSm {
-			font-size: 1.1rem;
+		@include breakXs {
+			font-size: 1rem;
+			padding: 0.8em;
 		}
 	}
 	.continue-button {
@@ -39,12 +42,18 @@
 		margin: auto;
 		width: 100%;
 		max-width: 400px;
+
 		@include breakMd {
 			max-width: 100%;
 		}
+
 		button {
 			max-width: 100%;
 			padding: 0.75em;
+			@include breakXs {
+				font-size: 1rem;
+				padding: 0.5em;
+			}
 		}
 	}
 }
