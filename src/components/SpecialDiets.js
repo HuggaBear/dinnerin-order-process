@@ -20,7 +20,7 @@ export default function SpecialDiets() {
 	return (
 		<div className="content special-diets">
 			<form onSubmit={onSubmit}>
-				<h2 className="uppercase">
+				<h2>
 					Would you prefer to select{" "}
 					<span className="primary-color bold">
 						<em>only</em>

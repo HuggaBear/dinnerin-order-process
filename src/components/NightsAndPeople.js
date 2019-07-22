@@ -6,6 +6,7 @@ import axios from "axios";
 import "./NightsAndPeople.scss";
 import DinRadioButton from "./DinRadioButton";
 
+// This should be creating a browser cookie for the user
 const cookie = "aaaaaaaaaa1111111111bbbbbbbbbb23";
 
 export default function NightsAndPeople() {
@@ -74,7 +75,7 @@ export default function NightsAndPeople() {
 	return loaded ? (
 		<div className="content nights-and-people">
 			<form onSubmit={onSubmit}>
-				<h2 className="uppercase">How many meals?</h2>
+				<h2>How many meals?</h2>
 				<div className="radio-squares nights">
 					{nightsValues.map((value, index) => (
 						<DinRadioButton
@@ -88,7 +89,7 @@ export default function NightsAndPeople() {
 						/>
 					))}
 				</div>
-				<h2 className="uppercase">For how many people?</h2>
+				<h2>For how many people?</h2>
 				<div className="radio-squares people">
 					{peopleValues.map((value, index) => (
 						<DinRadioButton

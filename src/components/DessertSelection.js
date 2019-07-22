@@ -58,7 +58,7 @@ export default function DessertSelection() {
 
 	return (
 		<div className="content dessert-selection">
-			<h2 className="header uppercase">Select desserts to go with your meal</h2>
+			<h2 className="header">Select desserts to go with your meal</h2>
 			<ContinueMessage continueClick={continueClick} canContinue={true} />
 			<YourDesserts selectedDesserts={desserts} removeSelectedDessert={removeSelectedDessert} />
 			<Meals type="desserts" addSelectedMeal={addSelectedDessert} buttons={false} />

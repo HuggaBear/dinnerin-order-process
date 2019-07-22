@@ -45,7 +45,7 @@ export default function MealSelection() {
 
 	return (
 		<div className="content meal-selection">
-			<h2 className={`header uppercase mb-0`}>Select {nights} meals for your next delivery</h2>
+			<h2 className={`header mb-0`}>Select {nights} meals for your next delivery</h2>
 			<ContinueMessage continueClick={continueClick} canContinue={canContinue} />
 			<YourMeals
 				selectedMeals={meals}

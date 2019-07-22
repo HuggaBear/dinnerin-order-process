@@ -6,7 +6,7 @@ export default function ProgressBar() {
 
 	// All possible application states. Should be in sync with the components in Content.js
 	const steps = [
-		"Nights & Meals",
+		"Meals & People",
 		"Special Diets",
 		"Meal Selection",
 		"Dessert Selection",
