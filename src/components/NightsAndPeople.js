@@ -22,7 +22,9 @@ export default function NightsAndPeople() {
 		const fetchData = async () => {
 			try {
 				// Get the nights and people for a particular cookie value
-				const result = await axios.get(`http://localhost:8081/api/dinnerin/nightsandpeople?cookieid=${cookie}`);
+				const result = await axios.get(
+					`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${cookie}`
+				);
 
 				// Parse the result into the nights and people values
 				updateUserData(d => {
