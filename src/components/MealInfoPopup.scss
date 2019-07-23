@@ -1,4 +1,5 @@
 @import "../scss/variables";
+@import "../scss/mixins";
 
 .meal-info-popup-wrapper {
 	position: fixed;
@@ -13,16 +14,36 @@
 	align-items: center;
 	justify-content: center;
 	z-index: 10;
+	@include breakSm {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1rem;
+		align-content: center;
+		max-height: 100%;
+		padding: 1rem;
+		grid-template-areas: "popup popup" "prev next";
+	}
 	.prev,
 	.next {
 		color: white;
 		font-size: 3rem;
-		left: 0;
 		padding: 1rem;
 		cursor: pointer;
+		@include breakSm {
+			padding: 0;
+		}
 		&:hover {
 			color: $primary-color;
 		}
+	}
+	.prev {
+		grid-area: prev;
+		padding-right: 1rem;
+		justify-self: right;
+	}
+	.next {
+		grid-area: next;
+		padding-left: 1rem;
 	}
 	.meal-info-popup {
 		display: flex;
@@ -35,7 +56,11 @@
 		box-sizing: border-box;
 		overflow: hidden;
 		background: white;
-
+		grid-area: popup;
+		@include breakSm {
+			height: auto;
+			max-height: 100%;
+		}
 		p,
 		td {
 			margin: 0;
@@ -74,6 +99,10 @@
 				line-height: 0.5em;
 				color: $secondary-color;
 				cursor: pointer;
+				@include breakSm {
+					font-size: 2.5rem;
+					padding: 0.5rem;
+				}
 				&:hover {
 					color: $error-primary;
 				}
@@ -83,6 +112,9 @@
 			width: 100%;
 			max-height: 250px;
 			object-fit: cover;
+			@include breakSm {
+				max-height: 150px;
+			}
 		}
 		.body {
 			overflow-y: auto;
@@ -91,16 +123,28 @@
 			display: grid;
 			padding: 2rem 2rem 0;
 			grid-template-columns: 1fr 1fr;
+			align-content: start;
 			grid-gap: 1.5rem 3rem;
-			grid-template-areas: "title title" "ingred nutrition" "allergens icons";
-
+			grid-template-areas: "title add-meal" "desc ingred" "allergens icons";
+			@include breakSm {
+				grid-template-areas: "title title" "desc desc" "ingred ingred" "allergens allergens" "icons icons";
+				padding: 1rem 1rem 0;
+				grid-gap: 1rem;
+			}
+			.add-meal {
+				grid-area: add-meal;
+				max-width: 100%;
+				@include breakMd {
+					display: none;
+				}
+			}
 			.title {
 				grid-area: title;
 				text-align: left;
 			}
-			// .description {
-			// 	grid-area: desc;
-			// }
+			.description {
+				grid-area: desc;
+			}
 			.ingredients {
 				grid-area: ingred;
 			}
@@ -139,6 +183,10 @@
 			height: 50px;
 			flex-shrink: 0;
 			border-top: 1px solid lighten($secondary-color, 10);
+			display: none;
+			@include breakMd {
+				display: block;
+			}
 			.button {
 				background-color: $primary-color;
 				color: white;

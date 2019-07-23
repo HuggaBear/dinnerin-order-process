@@ -50,10 +50,28 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 						{title}
 						{/* {price && <span className="price primary-color"> - {`$${price}`}</span>} */}
 					</h2>
+					<button
+						className="button add-meal uppercase"
+						onClick={() => addMeal(data.mealIndex, title, image, price, id)}
+					>
+						Add{" "}
+						{type
+							.split("")
+							.slice(0, type.length - 1)
+							.join("")}
+					</button>
 					{/* <div className="description">
 						<h3>Description</h3>
 						<div dangerouslySetInnerHTML={{ __html: description }} />
 					</div> */}
+					<div className="description">
+						<h3>Description</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+							tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
+							nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo con
+						</p>
+					</div>
 					<div className="ingredients">
 						<h3>Ingredients</h3>
 						<p>
@@ -62,7 +80,7 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 							nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo con
 						</p>
 					</div>
-					<div className="nutrition">
+					{/* <div className="nutrition">
 						<table>
 							<thead>
 								<tr>
@@ -100,7 +118,7 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 								</tr>
 							</tbody>
 						</table>
-					</div>
+					</div> */}
 					<div className="allergens">
 						<h3>Allergens</h3>
 						<p>Contains Milk, Egg and Soy</p>
