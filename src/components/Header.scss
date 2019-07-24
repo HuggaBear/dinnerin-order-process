@@ -41,13 +41,15 @@
 				grid-template-areas: "logo button";
 			}
 		}
-		img {
+		a {
 			grid-area: logo;
 			place-self: center;
-			width: 180px;
-			@include breakSm {
-				place-self: start;
-				width: 130px;
+			img {
+				width: 180px;
+				@include breakSm {
+					place-self: start;
+					width: 130px;
+				}
 			}
 		}
 		button {

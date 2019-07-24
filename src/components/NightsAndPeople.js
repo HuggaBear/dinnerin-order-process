@@ -86,63 +86,70 @@ export default function NightsAndPeople() {
 	};
 	const onSubmit = async e => {
 		// Create / update the selected nights and people with the cookieid
-		try {
-			const result = await axios.post(
-				`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${dinnerin_order_cookieid}`,
-				{
-					num_nights: nights,
-					num_people: people
-				}
-			);
-			// Initialise meals with placeholder array that is the same length as nights
-			// This also clears selected meals if they already exist
-			updateUserData({
-				...userData,
-				meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
-				selectedMealCount: 0
-			});
-			updateProgress(progress + 1);
-			e.preventDefault();
-		} catch (err) {
-			console.log(err);
-		}
+		// try {
+		// 	const result = await axios.post(
+		// 		`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${dinnerin_order_cookieid}`,
+		// 		{
+		// 			num_nights: nights,
+		// 			num_people: people
+		// 		}
+		// 	);
+
+		// } catch (err) {
+		// 	console.log(err);
+		// }
+
+		// Initialise meals with placeholder array that is the same length as nights
+		// This also clears selected meals if they already exist
+		updateUserData({
+			...userData,
+			meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
+			selectedMealCount: 0
+		});
+		updateProgress(progress + 1);
+		e.preventDefault();
 	};
 	return loaded ? (
-		<div className="content nights-and-people">
-			<form onSubmit={onSubmit}>
-				<h2>How many meals?</h2>
-				<div className="radio-squares nights">
-					{nightsValues.map((value, index) => (
-						<DinRadioButton
-							type="radio"
-							key={index}
-							name="nights"
-							checked={nights === value}
-							value={value}
-							label={value}
-							onChange={updateNights}
-						/>
-					))}
-				</div>
-				<h2>For how many people?</h2>
-				<div className="radio-squares people">
-					{peopleValues.map((value, index) => (
-						<DinRadioButton
-							type="radio"
-							key={index}
-							name="people"
-							checked={people === value}
-							value={value}
-							label={value}
-							onChange={updatePeople}
-						/>
-					))}
-				</div>
-				<button className="uppercase button" type="submit" value="continue">
-					Continue
-				</button>
-			</form>
-		</div>
+		<>
+			<div className="content nights-and-people">
+				<form onSubmit={onSubmit}>
+					<h2>How many meals?</h2>
+					<div className="radio-squares nights">
+						{nightsValues.map((value, index) => (
+							<DinRadioButton
+								type="radio"
+								key={index}
+								name="nights"
+								checked={nights === value}
+								value={value}
+								label={value}
+								onChange={updateNights}
+							/>
+						))}
+					</div>
+					<h2>For how many people?</h2>
+					<div className="radio-squares people">
+						{peopleValues.map((value, index) => (
+							<DinRadioButton
+								type="radio"
+								key={index}
+								name="people"
+								checked={people === value}
+								value={value}
+								label={value}
+								onChange={updatePeople}
+							/>
+						))}
+					</div>
+					<button className="uppercase button" type="submit" value="continue">
+						Continue
+					</button>
+				</form>
+				<p className="more-meals">
+					If you would like to order more than 7 meals, please email info@dinnerin.co.nz for more options.
+				</p>
+			</div>
+		</>
 	) : (
 		<div className="content loading">
 			<ReactLoading type="cubes" color="#00a651" />
