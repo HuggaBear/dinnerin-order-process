@@ -8,7 +8,9 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 	const id = theMeals[popup.mealIndex].id;
 
 	// Extract data from acf fields
-	const { title, image, price } = theMeals[popup.mealIndex].acf;
+	const { title, description, ingredients, allergens, components, meal_image, packaging_image, price } = theMeals[
+		popup.mealIndex
+	].acf;
 
 	// Close the popup only if exactly the wrapper or the close button is clicked
 	// Must specify this otherwise clicking on anything within the wrapper will close the popup
@@ -44,7 +46,7 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 						×
 					</div>
 				</div>
-				<img className="image" src={image} alt={""} />
+				<img className="image" src={meal_image ? meal_image : ""} alt={""} />
 				<div className="body">
 					<h2 className="title">
 						{title}
@@ -52,7 +54,7 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 					</h2>
 					<button
 						className="button add-meal uppercase"
-						onClick={() => addMeal(data.mealIndex, title, image, price, id)}
+						onClick={() => addMeal(data.mealIndex, title, meal_image, price, id)}
 					>
 						Add{" "}
 						{type
@@ -66,19 +68,11 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 					</div> */}
 					<div className="description">
 						<h3>Description</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-							tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-							nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo con
-						</p>
+						<p>{description}</p>
 					</div>
 					<div className="ingredients">
 						<h3>Ingredients</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-							tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-							nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo con
-						</p>
+						<p>{ingredients}</p>
 					</div>
 					{/* <div className="nutrition">
 						<table>
@@ -121,10 +115,12 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 					</div> */}
 					<div className="allergens">
 						<h3>Allergens</h3>
-						<p>Contains Milk, Egg and Soy</p>
+						<p>{allergens}</p>
 					</div>
 					<div className="icons">
-						<img
+						<h3>Components</h3>
+
+						{/* <img
 							alt=""
 							style={{
 								background: "grey",
@@ -133,7 +129,8 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 								marginRight: "1rem"
 							}}
 						/>
-						<img alt="" style={{ background: "grey", width: "50px", height: "50px" }} />
+						<img alt="" style={{ background: "grey", width: "50px", height: "50px" }} /> */}
+						<p>{components}</p>
 					</div>
 
 					{/* {price && <div className="price uppercase primary-color">{`$${price}`}</div>} */}
@@ -141,7 +138,7 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 				<div className="footer">
 					<button
 						className="button uppercase"
-						onClick={() => addMeal(data.mealIndex, title, image, price, id)}
+						onClick={() => addMeal(data.mealIndex, title, meal_image, price, id)}
 					>
 						Add{" "}
 						{type

@@ -25,7 +25,8 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 	// Fetch meal/dessert data on mount. Type can be meals or desserts
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await axios.get(`https://react.alphabean.co.nz/wp-json/wp/v2/${type}?per_page=100`);
+			const result = await axios.get(`https://dinnerin.co.nz/wp-json/wp/v2/${type}?per_page=100`);
+			console.log(result);
 			updateData(d => {
 				return { ...d, [type]: result.data, loaded: true };
 			});
@@ -46,7 +47,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 						id={item.id}
 						className="loaded"
 						title={item.acf.title}
-						image={item.acf.image}
+						image={item.acf.meal_image}
 						addSelectedMeal={addSelectedMeal}
 						price={item.acf.price}
 					/>

@@ -29,11 +29,7 @@ export default function Meal({
 		}
 	};
 	return (
-		<div
-			onClick={mealClick}
-			className={`single-meal ${className}`}
-			style={image && { backgroundImage: `url(${image})` }}
-		>
+		<div onClick={mealClick} className={`single-meal ${className}`} style={{ backgroundImage: `url(${image})` }}>
 			{title && removeSelectedMeal ? (
 				<div className="remove-from-cart">-</div>
 			) : title && addSelectedMeal ? (

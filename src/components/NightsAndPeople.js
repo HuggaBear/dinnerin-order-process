@@ -5,9 +5,8 @@ import { ProgressContext } from "../contexts/ProgressContext";
 import axios from "axios";
 import "./NightsAndPeople.scss";
 import DinRadioButton from "./DinRadioButton";
-
+import cookie from "cookie";
 // This should be creating a browser cookie for the user
-const cookie = "aaaaaaaaaa1111111111bbbbbbbbbb23";
 
 export default function NightsAndPeople() {
 	const [loaded, updateLoaded] = useState(false);
@@ -18,24 +17,48 @@ export default function NightsAndPeople() {
 	// 1 person 3 nights not allowed
 	const peopleValues = nights === 3 ? [2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
 
+	// Get the browser cookies as an object containing key value pairs
+	var cookies = cookie.parse(document.cookie);
+
+	// Look for dinnerin_order_cookieid
+	var dinnerin_order_cookieid = cookies.dinnerin_order_cookieid;
+
 	// Fetch the nights and people values on mount if they exist
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				// Get the nights and people for a particular cookie value
-				const result = await axios.get(
-					`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${cookie}`
-				);
+				// If the cookie is present, i.e this user has visited the site in the last 28 days, request the info for the cookie from the database
+				if (dinnerin_order_cookieid) {
+					const result = await axios.get(
+						`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${dinnerin_order_cookieid}`
+					);
+					// Parse the result into the nights and people values
+					updateUserData(d => {
+						return {
+							...userData,
+							nights: parseInt(result.data.nights),
+							people: parseInt(result.data.people)
+						};
+					});
 
-				// Parse the result into the nights and people values
-				updateUserData(d => {
-					return { ...userData, nights: parseInt(result.data.nights), people: parseInt(result.data.people) };
-				});
+					// Update app to loaded
+					updateLoaded(d => {
+						return true;
+					});
+				} else {
+					// Create a cookie for the new user, since it does not exist. The cookie is a random, unique 32 digit hex string
+					var date = new Date();
+					var newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 28);
+					document.cookie = `dinnerin_order_cookieid=aaaaaaaaaa1111111111bbbbbbbbbca3; exires=${newDate}`;
 
-				// Update app to loaded
-				updateLoaded(d => {
-					return true;
-				});
+					// Set the  nights and people to default values
+					updateUserData(d => {
+						return { ...userData, nights: 5, people: 3 };
+					});
+					updateLoaded(d => {
+						return true;
+					});
+				}
 			} catch (err) {
 				// If the content doesn't load we must set the nights and people to the default values
 				updateUserData(d => {
@@ -61,16 +84,28 @@ export default function NightsAndPeople() {
 	const updatePeople = e => {
 		updateUserData({ ...userData, people: parseInt(e.target.value) });
 	};
-	const onSubmit = e => {
-		// Initialise meals with placeholder array that is the same length as nights
-		// This also clears selected meals if they already exist
-		updateUserData({
-			...userData,
-			meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
-			selectedMealCount: 0
-		});
-		updateProgress(progress + 1);
-		e.preventDefault();
+	const onSubmit = async e => {
+		// Create / update the selected nights and people with the cookieid
+		try {
+			const result = await axios.post(
+				`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${dinnerin_order_cookieid}`,
+				{
+					num_nights: nights,
+					num_people: people
+				}
+			);
+			// Initialise meals with placeholder array that is the same length as nights
+			// This also clears selected meals if they already exist
+			updateUserData({
+				...userData,
+				meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
+				selectedMealCount: 0
+			});
+			updateProgress(progress + 1);
+			e.preventDefault();
+		} catch (err) {
+			console.log(err);
+		}
 	};
 	return loaded ? (
 		<div className="content nights-and-people">
