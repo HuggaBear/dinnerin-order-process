@@ -49,7 +49,7 @@ export default function NightsAndPeople() {
 					// Create a cookie for the new user, since it does not exist. The cookie is a random, unique 32 digit hex string
 					var date = new Date();
 					var newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 28);
-					document.cookie = `dinnerin_order_cookieid=aaaaaaaaaa1111111111bbbbbbbbbca3; exires=${newDate}`;
+					document.cookie = `dinnerin_order_cookieid=aaaaaaaaaa1111111111bbbbbbbbbf01; exires=${newDate}`;
 
 					// Set the  nights and people to default values
 					updateUserData(d => {

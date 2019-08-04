@@ -1,7 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ProgressContext } from "../contexts/ProgressContext";
 import "./ProgressBar.scss";
+import Flickity from "react-flickity-component";
+
 export default function ProgressBar() {
+	const [flkty, setFlkty] = useState(null);
 	const { progress, updateProgress } = useContext(ProgressContext);
 
 	// All possible application states. Should be in sync with the components in Content.js
@@ -13,16 +16,29 @@ export default function ProgressBar() {
 		"Plan Selection",
 		"Checkout"
 	];
-
+	const changeSlide = () => {
+		flkty && flkty.select(progress);
+	};
+	useEffect(() => {
+		changeSlide();
+	}, [progress]);
 	//DEBUG - Start app on meal selection REMOVE
-	// updateProgress(2);
+	// updateProgress(4);
 
 	return (
 		<div className="progress-bar-wrapper">
 			<div className="progress-bar uppercase">
-				<ol className="steps">
+				<Flickity
+					options={{
+						// disable previous & next buttons and dots
+						prevNextButtons: false,
+						pageDots: false,
+						dragThreshold: 10
+					}}
+					flickityRef={c => setFlkty(c)}
+				>
 					{steps.map((item, index) => (
-						<li
+						<div
 							key={index}
 							className={`step ${progress > index ? "complete" : ""} ${
 								progress === index ? "current" : ""
@@ -30,9 +46,9 @@ export default function ProgressBar() {
 							onClick={() => (index < progress ? updateProgress(index) : null)}
 						>
 							{item}
-						</li>
+						</div>
 					))}
-				</ol>
+				</Flickity>
 			</div>
 		</div>
 	);

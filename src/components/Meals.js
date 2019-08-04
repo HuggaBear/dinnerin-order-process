@@ -26,7 +26,6 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await axios.get(`https://dinnerin.co.nz/wp-json/wp/v2/${type}?per_page=100`);
-			console.log(result);
 			updateData(d => {
 				return { ...d, [type]: result.data, loaded: true };
 			});
