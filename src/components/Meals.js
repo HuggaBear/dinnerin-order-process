@@ -17,6 +17,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 	const { userData, updateUserData } = useContext(UserDataContext);
 	const { progress } = useContext(ProgressContext);
 	const { popup } = useContext(PopupContext);
+
 	// If the user has selected vegetarian only options, we must first filter the meals (only if not on the desserts page)
 	const theMeals = data[type].filter(
 		item => !data.loaded || type === "desserts" || (userData.vegetarian ? item.acf.vegetarian : true)
@@ -86,7 +87,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 								onChange={() => updateUserData({ ...userData, vegetarian: !userData.vegetarian })}
 							/>
 							<span className="checkbox">
-								{userData.vegetarian ? "Standard Menu" : "Vegetarian Menu"}
+								{userData.vegetarian ? "View Standard Menu" : "View Vegetarian Menu"}
 							</span>
 						</label>
 					)}

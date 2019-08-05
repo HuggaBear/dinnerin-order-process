@@ -5,8 +5,9 @@ export default function Header() {
 	return (
 		<div className="header">
 			<div className="header-upper uppercase">
-				<span>Order by || DD/MM/YY</span>
-				<span>Receive on || DD/MM/YY</span>{" "}
+				<span>&nbsp;</span>
+				{/* <span>Order by || DD/MM/YY</span>
+				<span>Receive on || DD/MM/YY</span>{" "} */}
 			</div>
 			<div className="header-lower">
 				<div className="inner">
@@ -16,7 +17,7 @@ export default function Header() {
 							src="https://dinnerin.co.nz/wp-content/uploads/2018/01/Dinner-In_BW_Logo.png"
 						/>
 					</a>
-					<button className="login uppercase">Login / register</button>
+					{/* <button className="login uppercase">Login / register</button> */}
 				</div>
 			</div>
 		</div>
