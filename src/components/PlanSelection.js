@@ -24,13 +24,13 @@ export default function PlanSelection() {
 			var cookies = cookie.parse(document.cookie);
 
 			// Look for dinnerin_order_cookieid
-			var dinnerin_order_cookieid = cookies.dinnerin_order_cookieid;
+			var dinner_in_gbiv_customer_id = cookies.dinner_in_gbiv_customer_id;
 			const result = await axios.get(
 				`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/${
 					userData.plan === "subscription" ? "setsubscription" : "setsinglepurchase"
-				}/notloggedin/${dinnerin_order_cookieid}`
+				}/notloggedin/${dinner_in_gbiv_customer_id}`
 			);
-			console.log(result.data);
+			window.location.href = "https://dinnerin.alphabean.co.nz/checkout/";
 		} catch (err) {
 			console.log(err);
 		}

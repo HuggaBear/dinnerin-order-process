@@ -18,39 +18,41 @@ export default function NightsAndPeople() {
 	const peopleValues = nights === 3 ? [2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
 
 	// Get the browser cookies as an object containing key value pairs
-	var cookies = cookie.parse(document.cookie);
+	const cookies = cookie.parse(document.cookie);
 
 	// Look for dinnerin_order_cookieid
-	var dinnerin_order_cookieid = cookies.dinnerin_order_cookieid;
+	const dinner_in_gbiv_customer_id = cookies.dinner_in_gbiv_customer_id;
 
 	// Fetch the nights and people values on mount if they exist
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				// If the cookie is present, i.e this user has visited the site in the last 28 days, request the info for the cookie from the database
-				if (dinnerin_order_cookieid) {
+				if (dinner_in_gbiv_customer_id) {
 					const result = await axios.get(
-						`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${dinnerin_order_cookieid}`
+						`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${dinner_in_gbiv_customer_id}`
 					);
-					// Parse the result into the nights and people values
-					updateUserData(d => {
-						return {
-							...userData,
-							nights: parseInt(result.data.nights),
-							people: parseInt(result.data.people)
-						};
-					});
+					if (result.data.nights && result.data.people) {
+						// Parse the result into the nights and people values
+						updateUserData(d => {
+							return {
+								...userData,
+								nights: parseInt(result.data.nights),
+								people: parseInt(result.data.people)
+							};
+						});
+					}
 
 					// Update app to loaded
 					updateLoaded(d => {
 						return true;
 					});
 				} else {
+					const result = await axios.get(
+						`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/getcookievalue`
+					);
 					// Create a cookie for the new user, since it does not exist. The cookie is a random, unique 32 digit hex string
-					var date = new Date();
-					var newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 28);
-					document.cookie = `dinnerin_order_cookieid=aaaaaaaaaa1111111111bbbbbbbbbf01; exires=${newDate}`;
-
+					document.cookie = `dinner_in_gbiv_customer_id=${result.data.REST_cookie_value};`;
 					// Set the  nights and people to default values
 					updateUserData(d => {
 						return { ...userData, nights: 5, people: 3 };
@@ -60,6 +62,7 @@ export default function NightsAndPeople() {
 					});
 				}
 			} catch (err) {
+				console.log(err);
 				// If the content doesn't load we must set the nights and people to the default values
 				updateUserData(d => {
 					return { ...userData, nights: 5, people: 3 };
@@ -85,29 +88,30 @@ export default function NightsAndPeople() {
 		updateUserData({ ...userData, people: parseInt(e.target.value) });
 	};
 	const onSubmit = async e => {
+		e.preventDefault();
+		updateLoaded(false);
 		// Create / update the selected nights and people with the cookieid
-		// try {
-		// 	const result = await axios.post(
-		// 		`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${dinnerin_order_cookieid}`,
-		// 		{
-		// 			num_nights: nights,
-		// 			num_people: people
-		// 		}
-		// 	);
-
-		// } catch (err) {
-		// 	console.log(err);
-		// }
+		try {
+			const result = await axios.post(
+				`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/setpeopleandnights/notloggedin/${dinner_in_gbiv_customer_id}`,
+				{
+					num_nights: nights,
+					num_people: people
+				}
+			);
+			updateUserData({
+				...userData,
+				meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
+				selectedMealCount: 0
+			});
+			updateProgress(progress + 1);
+		} catch (err) {
+			console.log(err);
+			updateLoaded(true);
+		}
 
 		// Initialise meals with placeholder array that is the same length as nights
 		// This also clears selected meals if they already exist
-		updateUserData({
-			...userData,
-			meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
-			selectedMealCount: 0
-		});
-		updateProgress(progress + 1);
-		e.preventDefault();
 	};
 	return loaded ? (
 		<>
