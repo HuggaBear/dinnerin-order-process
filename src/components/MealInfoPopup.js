@@ -8,7 +8,7 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 	const id = theMeals[popup.mealIndex].id;
 
 	// Extract data from acf fields
-	const { title, description, ingredients, allergens, components, meal_image, packaging_image, price } = theMeals[
+	const { title, description, ingredients, allergens, components, meal_image, price } = theMeals[
 		popup.mealIndex
 	].acf;
 
@@ -74,45 +74,6 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 						<h3>Ingredients</h3>
 						<p>{ingredients}</p>
 					</div>
-					{/* <div className="nutrition">
-						<table>
-							<thead>
-								<tr>
-									<th>Nutrition</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td className="uppercase">Energy</td>
-									<td>2000Kj</td>
-								</tr>
-								<tr>
-									<td className="uppercase">Fat</td>
-									<td>20g</td>
-								</tr>
-								<tr>
-									<td className="uppercase">Saturated fat</td>
-									<td>5g</td>
-								</tr>
-								<tr>
-									<td className="uppercase">Sodium</td>
-									<td>1500mg</td>
-								</tr>
-								<tr>
-									<td className="uppercase">Total carbohydrates</td>
-									<td>50g</td>
-								</tr>
-								<tr>
-									<td className="uppercase">Total sugars</td>
-									<td>20g</td>
-								</tr>
-								<tr>
-									<td className="uppercase">Protein</td>
-									<td>10g</td>
-								</tr>
-							</tbody>
-						</table>
-					</div> */}
 					<div className="allergens">
 						<h3>Allergens</h3>
 						<p>{allergens}</p>

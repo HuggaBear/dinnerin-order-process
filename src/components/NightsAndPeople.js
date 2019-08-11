@@ -23,12 +23,15 @@ export default function NightsAndPeople() {
 	// Look for dinnerin_order_cookieid
 	const dinner_in_gbiv_customer_id = cookies.dinner_in_gbiv_customer_id;
 
-	// Fetch the nights and people values on mount if they exist
+	//
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				// If the cookie is present, i.e this user has visited the site in the last 28 days, request the info for the cookie from the database
 				if (dinner_in_gbiv_customer_id) {
+					// Check if cookie is kosher
+					// TODO
+
 					const result = await axios.get(
 						`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${dinner_in_gbiv_customer_id}`
 					);
@@ -48,11 +51,17 @@ export default function NightsAndPeople() {
 						return true;
 					});
 				} else {
+					// Get a new cookie value (32 digit hex string)
 					const result = await axios.get(
 						`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/getcookievalue`
 					);
-					// Create a cookie for the new user, since it does not exist. The cookie is a random, unique 32 digit hex string
-					document.cookie = `dinner_in_gbiv_customer_id=${result.data.REST_cookie_value};`;
+					// Expires in a month
+					const now = new Date();
+					now.setMonth(now.getMonth() + 1);
+					// Save the cookie
+					document.cookie = `dinner_in_gbiv_customer_id=${
+						result.data.REST_cookie_value
+					};expires=${now.toUTCString()}`;
 					// Set the  nights and people to default values
 					updateUserData(d => {
 						return { ...userData, nights: 5, people: 3 };
@@ -92,7 +101,7 @@ export default function NightsAndPeople() {
 		updateLoaded(false);
 		// Create / update the selected nights and people with the cookieid
 		try {
-			const result = await axios.post(
+			await axios.post(
 				`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/setpeopleandnights/notloggedin/${dinner_in_gbiv_customer_id}`,
 				{
 					num_nights: nights,

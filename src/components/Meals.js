@@ -14,6 +14,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 		loaded: false,
 		err: false
 	});
+
 	const { userData, updateUserData } = useContext(UserDataContext);
 	const { progress } = useContext(ProgressContext);
 	const { popup } = useContext(PopupContext);

@@ -25,7 +25,9 @@ export default function PlanSelection() {
 
 			// Look for dinnerin_order_cookieid
 			var dinner_in_gbiv_customer_id = cookies.dinner_in_gbiv_customer_id;
-			const result = await axios.get(
+
+			// Set subscription / single purchase
+			await axios.get(
 				`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/${
 					userData.plan === "subscription" ? "setsubscription" : "setsinglepurchase"
 				}/notloggedin/${dinner_in_gbiv_customer_id}`
@@ -54,7 +56,8 @@ export default function PlanSelection() {
 			}
 		};
 		fetchData();
-	}, []);
+	}, [nights, people]);
+
 	return (
 		<div className="content plan-selection">
 			<h2 className="uppercase">Please select your preferred plan</h2>

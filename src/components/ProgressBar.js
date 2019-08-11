@@ -16,12 +16,10 @@ export default function ProgressBar() {
 		"Plan Selection",
 		"Checkout"
 	];
-	const changeSlide = () => {
-		flkty && flkty.select(progress);
-	};
+
 	useEffect(() => {
-		changeSlide();
-	}, [progress]);
+		flkty && flkty.select(progress);
+	}, [progress, flkty]);
 	//DEBUG - Start app on meal selection REMOVE
 	// updateProgress(4);
 

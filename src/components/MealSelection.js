@@ -1,19 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./MealSelection.scss";
 import Meals from "./Meals";
 import YourMeals from "./YourMeals";
 import { UserDataContext } from "../contexts/UserDataContext";
 import { ProgressContext } from "../contexts/ProgressContext";
 import ContinueMessage from "./ContinueMessage";
+import cookie from "cookie";
+import axios from "axios";
 
 export default function MealSelection() {
 	const { progress, updateProgress } = useContext(ProgressContext);
 	const { userData, updateUserData } = useContext(UserDataContext);
 	const { meals, nights, selectedMealCount } = userData;
 	const canContinue = !(nights - selectedMealCount);
-
+	const cookies = cookie.parse(document.cookie);
+	const dinner_in_gbiv_customer_id = cookies.dinner_in_gbiv_customer_id;
 	// Add a meal to the selected meals list if the list is not full
-	const addSelectedMeal = (index, title, image) => {
+	const addSelectedMeal = async (index, title, image, price, id) => {
+		// Submit the meal to the database
+		try {
+			const res = await axios.post(
+				`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/setmealselections/notloggedin/${dinner_in_gbiv_customer_id}`,
+				{
+					new_meal_post_id: id
+				}
+			);
+			console.log(res.data);
+		} catch (err) {
+			console.log(err);
+		}
 		if (selectedMealCount < nights) {
 			updateUserData({
 				...userData,
@@ -28,7 +43,19 @@ export default function MealSelection() {
 	};
 
 	// Remove a meal from the selected meals list if the list is not empty
-	const removeSelectedMeal = index => {
+	const removeSelectedMeal = async (index, title, image, price, id) => {
+		// Remove the meal from the database
+		try {
+			const res = await axios.post(
+				`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/setmealselections/notloggedin/${dinner_in_gbiv_customer_id}`,
+				{
+					new_meal_post_id: id
+				}
+			);
+			console.log(res.data);
+		} catch (err) {
+			console.log(err);
+		}
 		if (selectedMealCount > 0) {
 			updateUserData({
 				...userData,
