@@ -31,9 +31,16 @@
 	* {
 		outline: none !important;
 	}
-	.flickity-slider {
-		width: 210px;
+	.flickity-enabled {
+		width: 100%;
 	}
+	.flickity-slider {
+		width: 100%;
+		height: 100%;
+	}
+	// .flickity-viewport {
+	// 	width: 1500px;
+	// }
 	.steps {
 		height: 100%;
 		padding: 0;

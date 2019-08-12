@@ -23,11 +23,12 @@ export default function NightsAndPeople() {
 	// Look for dinnerin_order_cookieid
 	const dinner_in_gbiv_customer_id = cookies.dinner_in_gbiv_customer_id;
 
-	//
+	// If there's a cookie, fetch the nights and peopel from the database.
+	// If there's no cookie, create one and set nights and people to the default values
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				// If the cookie is present, i.e this user has visited the site in the last 28 days, request the info for the cookie from the database
+				// If the cookie is present, i.e this user has visited the site in the last 28 days, request the nights and people from the DB
 				if (dinner_in_gbiv_customer_id) {
 					// Check if cookie is kosher
 					// TODO
@@ -126,21 +127,7 @@ export default function NightsAndPeople() {
 		<>
 			<div className="content nights-and-people">
 				<form onSubmit={onSubmit}>
-					<h2>How many meals?</h2>
-					<div className="radio-squares nights">
-						{nightsValues.map((value, index) => (
-							<DinRadioButton
-								type="radio"
-								key={index}
-								name="nights"
-								checked={nights === value}
-								value={value}
-								label={value}
-								onChange={updateNights}
-							/>
-						))}
-					</div>
-					<h2>For how many people?</h2>
+					<h2>How many people?</h2>
 					<div className="radio-squares people">
 						{peopleValues.map((value, index) => (
 							<DinRadioButton
@@ -151,6 +138,20 @@ export default function NightsAndPeople() {
 								value={value}
 								label={value}
 								onChange={updatePeople}
+							/>
+						))}
+					</div>
+					<h2>For how many meals?</h2>
+					<div className="radio-squares nights">
+						{nightsValues.map((value, index) => (
+							<DinRadioButton
+								type="radio"
+								key={index}
+								name="nights"
+								checked={nights === value}
+								value={value}
+								label={value}
+								onChange={updateNights}
 							/>
 						))}
 					</div>

@@ -31,7 +31,9 @@ export default function ProgressBar() {
 						// disable previous & next buttons and dots
 						prevNextButtons: false,
 						pageDots: false,
-						dragThreshold: 10
+						dragThreshold: 10,
+						freeScroll: true,
+						cellAlign: "center"
 					}}
 					flickityRef={c => setFlkty(c)}
 				>
