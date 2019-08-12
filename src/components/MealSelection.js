@@ -42,31 +42,31 @@ export default function MealSelection() {
 		}
 	};
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				if (dinner_in_gbiv_customer_id) {
-					const result = await axios.get(
-						`https://proxy.alphabean.co.nz/api/dinnerin/meals?cookieid=${dinner_in_gbiv_customer_id}`
-					);
-					// Result is an array of meal IDs
-					const previousMeals = result.data.meals.filter(id => id !== -333);
-					if (previousMeals.length) {
-						// Add all the previously selected meals to the userData array
-						updateUserData({
-							...userData,
-							selectedMealCount: previousMeals.length,
-							meals: previousMeals.map(id => {})
-						});
-					}
-				} else {
-				}
-			} catch (err) {
-				console.log(err);
-			}
-		};
-		fetchData();
-	}, []);
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		try {
+	// 			if (dinner_in_gbiv_customer_id) {
+	// 				const result = await axios.get(
+	// 					`https://proxy.alphabean.co.nz/api/dinnerin/meals?cookieid=${dinner_in_gbiv_customer_id}`
+	// 				);
+	// 				// Result is an array of meal IDs
+	// 				const previousMeals = result.data.meals.filter(id => id !== -333);
+	// 				if (previousMeals.length) {
+	// 					// Add all the previously selected meals to the userData array
+	// 					updateUserData({
+	// 						...userData,
+	// 						selectedMealCount: previousMeals.length,
+	// 						meals: previousMeals.map(id => {})
+	// 					});
+	// 				}
+	// 			} else {
+	// 			}
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 		}
+	// 	};
+	// 	fetchData();
+	// }, []);
 	// Remove a meal from the selected meals list if the list is not empty
 	const removeSelectedMeal = async (index, title, image, price, id) => {
 		if (selectedMealCount > 0) {

@@ -25,7 +25,7 @@ export default function ProgressBar() {
 
 	return (
 		<div className="progress-bar-wrapper">
-			<div className="progress-bar uppercase">
+			<div className="progress-bar uppercase custom-flickity-slider">
 				<Flickity
 					options={{
 						// disable previous & next buttons and dots
@@ -49,6 +49,17 @@ export default function ProgressBar() {
 						</div>
 					))}
 				</Flickity>
+			</div>
+			<div className="progress-bar uppercase static-progress-bar">
+				{steps.map((item, index) => (
+					<div
+						key={index}
+						className={`step ${progress > index ? "complete" : ""} ${progress === index ? "current" : ""}`}
+						onClick={() => (index < progress ? updateProgress(index) : null)}
+					>
+						{item}
+					</div>
+				))}
 			</div>
 		</div>
 	);

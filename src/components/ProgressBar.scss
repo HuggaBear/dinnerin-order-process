@@ -22,6 +22,20 @@
 	overflow-x: scroll;
 	overflow: -moz-scrollbars-none;
 	-ms-overflow-style: none;
+	&.custom-flickity-slider {
+		display: none;
+		@include progressBarBreakPoint {
+			display: flex;
+		}
+	}
+	&.static-progress-bar {
+		padding: 3px 0;
+
+		display: flex;
+		@include progressBarBreakPoint {
+			display: none;
+		}
+	}
 	&::-webkit-scrollbar {
 		display: none !important;
 	}
@@ -31,16 +45,12 @@
 	* {
 		outline: none !important;
 	}
-	.flickity-enabled {
+	.flickity-viewport {
 		width: 100%;
 	}
 	.flickity-slider {
-		width: 100%;
-		height: 100%;
+		width: 210px;
 	}
-	// .flickity-viewport {
-	// 	width: 1500px;
-	// }
 	.steps {
 		height: 100%;
 		padding: 0;
