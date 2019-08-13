@@ -20,8 +20,9 @@ export default function ProgressBar() {
 	useEffect(() => {
 		flkty && flkty.select(progress);
 	}, [progress, flkty]);
+
 	//DEBUG - Start app on meal selection REMOVE
-	// updateProgress(4);
+	// updateProgress(3);
 
 	return (
 		<div className="progress-bar-wrapper">

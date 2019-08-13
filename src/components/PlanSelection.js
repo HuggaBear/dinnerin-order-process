@@ -32,7 +32,7 @@ export default function PlanSelection() {
 					userData.plan === "subscription" ? "setsubscription" : "setsinglepurchase"
 				}/notloggedin/${dinner_in_gbiv_customer_id}`
 			);
-			window.location.href = "https://dinnerin.alphabean.co.nz/checkout/";
+			window.location.href = `https://dinnerin.alphabean.co.nz/checkout/?cookie_id=${dinner_in_gbiv_customer_id}`;
 		} catch (err) {
 			console.log(err);
 		}

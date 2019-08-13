@@ -20,7 +20,7 @@ export default function YourMeals({ selectedMeals, removeSelectedMeal, selectedM
 
 				{selectedMeals.map((item, index) => (
 					<Meal
-						key={item.id ? item.id : index}
+						key={index}
 						title={item.title}
 						image={item.image}
 						removeSelectedMeal={removeSelectedMeal}
