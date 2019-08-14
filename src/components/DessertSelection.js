@@ -8,6 +8,7 @@ import { ProgressContext } from "../contexts/ProgressContext";
 import axios from "axios";
 import cookie from "cookie";
 import ReactLoading from "react-loading";
+import * as Constants from "../constants/Constants";
 
 export default function DessertSelection() {
 	const [loaded, setLoaded] = useState(true);
@@ -65,14 +66,18 @@ export default function DessertSelection() {
 
 			// Purge all previous meal selections
 			await axios.delete(
-				`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/purgealldesserts/notloggedin/${dinner_in_gbiv_customer_id}`
+				`${
+					Constants.BASE_URL_DIRECT
+				}/wp-json/dinnerinquasicart/v2/quasicart/purgealldesserts/notloggedin/${dinner_in_gbiv_customer_id}`
 			);
 
 			// Add all the new meals to the database (synchronous)
 			for (let i = 0; i < desserts.length; i++) {
 				for (let j = 0; j < desserts[i].quantity; j++) {
 					await axios.post(
-						`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/adddessert/notloggedin/${dinner_in_gbiv_customer_id}`,
+						`${
+							Constants.BASE_URL_DIRECT
+						}/wp-json/dinnerinquasicart/v2/quasicart/adddessert/notloggedin/${dinner_in_gbiv_customer_id}`,
 						{
 							dessert_post_id: desserts[i].id
 						}

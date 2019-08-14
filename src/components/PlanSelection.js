@@ -4,6 +4,7 @@ import { UserDataContext } from "../contexts/UserDataContext";
 import axios from "axios";
 import ReactLoading from "react-loading";
 import cookie from "cookie";
+import * as Constants from "../constants/Constants";
 
 export default function PlanSelection() {
 	const [cardsLoaded, updateCardsLoaded] = useState(false);
@@ -30,11 +31,11 @@ export default function PlanSelection() {
 
 			// Set subscription / single purchase
 			await axios.get(
-				`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/${
+				`${Constants.BASE_URL_DIRECT}/wp-json/dinnerinquasicart/v2/quasicart/${
 					userData.plan === "subscription" ? "setsubscription" : "setsinglepurchase"
 				}/notloggedin/${dinner_in_gbiv_customer_id}`
 			);
-			window.location.href = `https://dinnerin.alphabean.co.nz/checkout/?cookie_id=${dinner_in_gbiv_customer_id}`;
+			window.location.href = `${Constants.BASE_URL_DIRECT}/checkout/?cookie_id=${dinner_in_gbiv_customer_id}`;
 		} catch (err) {
 			console.log(err);
 			updateAppLoaded(true);
@@ -47,7 +48,7 @@ export default function PlanSelection() {
 		const fetchData = async () => {
 			try {
 				const result = await axios.get(
-					`https://proxy.alphabean.co.nz/api/dinnerin/price?nights=${nights}&people=${people}`
+					`${Constants.BASE_URL}/api/dinnerin/price?nights=${nights}&people=${people}`
 				);
 
 				updateData(d => {

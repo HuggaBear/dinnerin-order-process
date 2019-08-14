@@ -8,6 +8,7 @@ import ContinueMessage from "./ContinueMessage";
 import cookie from "cookie";
 import axios from "axios";
 import ReactLoading from "react-loading";
+import * as Constants from "../constants/Constants";
 
 export default function MealSelection() {
 	const [loaded, setLoaded] = useState(true);
@@ -48,6 +49,7 @@ export default function MealSelection() {
 	// 	};
 	// 	fetchData();
 	// }, []);
+
 	// Remove a meal from the selected meals list if the list is not empty
 	const removeSelectedMeal = async (index, title, image, price, id) => {
 		if (selectedMealCount > 0) {
@@ -67,13 +69,17 @@ export default function MealSelection() {
 
 				// Purge all previous meal selections
 				await axios.delete(
-					`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/setmealselections/notloggedin/${dinner_in_gbiv_customer_id}`
+					`${
+						Constants.BASE_URL_DIRECT
+					}/wp-json/dinnerinquasicart/v2/quasicart/setmealselections/notloggedin/${dinner_in_gbiv_customer_id}`
 				);
 
 				// Add all the new meals to the database (synchronous)
 				for (let i = 0; i < meals.length; i++) {
 					await axios.post(
-						`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/setmealselections/notloggedin/${dinner_in_gbiv_customer_id}`,
+						`${
+							Constants.BASE_URL_DIRECT
+						}/wp-json/dinnerinquasicart/v2/quasicart/setmealselections/notloggedin/${dinner_in_gbiv_customer_id}`,
 						{
 							new_meal_post_id: meals[i].id
 						}

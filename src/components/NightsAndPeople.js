@@ -6,9 +6,7 @@ import axios from "axios";
 import "./NightsAndPeople.scss";
 import DinRadioButton from "./DinRadioButton";
 import cookie from "cookie";
-// This should be creating a browser cookie for the user
-
-const DOMAIN_NAME = "alphabean.co.nz";
+import * as Constants from "../constants/Constants";
 
 export default function NightsAndPeople() {
 	const [loaded, updateLoaded] = useState(false);
@@ -36,7 +34,7 @@ export default function NightsAndPeople() {
 					// TODO
 
 					const result = await axios.get(
-						`https://proxy.alphabean.co.nz/api/dinnerin/nightsandpeople?cookieid=${dinner_in_gbiv_customer_id}`
+						`${Constants.BASE_URL}/api/dinnerin/nightsandpeople?cookieid=${dinner_in_gbiv_customer_id}`
 					);
 					if (result.data.nights && result.data.people) {
 						// Parse the result into the nights and people values
@@ -56,7 +54,7 @@ export default function NightsAndPeople() {
 				} else {
 					// Get a new cookie value (32 digit hex string)
 					const result = await axios.get(
-						`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/getcookievalue`
+						`${Constants.BASE_URL_DIRECT}/wp-json/dinnerinquasicart/v2/quasicart/getcookievalue`
 					);
 					// Expires in a month
 					const now = new Date();
@@ -106,7 +104,9 @@ export default function NightsAndPeople() {
 		// Create / update the selected nights and people with the cookieid
 		try {
 			await axios.post(
-				`https://dinnerin.alphabean.co.nz/wp-json/dinnerinquasicart/v2/quasicart/setpeopleandnights/notloggedin/${dinner_in_gbiv_customer_id}`,
+				`${
+					Constants.BASE_URL_DIRECT
+				}/wp-json/dinnerinquasicart/v2/quasicart/setpeopleandnights/notloggedin/${dinner_in_gbiv_customer_id}`,
 				{
 					num_nights: nights,
 					num_people: people
@@ -168,6 +168,7 @@ export default function NightsAndPeople() {
 			</div>
 		</>
 	) : (
+		// Loading Splash
 		<div className="content loading">
 			<ReactLoading type="cubes" color="#00a651" />
 		</div>

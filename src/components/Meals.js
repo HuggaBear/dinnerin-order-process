@@ -6,6 +6,7 @@ import "./Meals.scss";
 import axios from "axios";
 import Meal from "./Meal";
 import MealInfoPopup from "./MealInfoPopup";
+import * as Constants from "../constants/Constants";
 
 export default function Meals({ type, addSelectedMeal, buttons = true }) {
 	const [data, updateData] = useState({
