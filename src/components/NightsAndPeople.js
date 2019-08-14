@@ -8,6 +8,8 @@ import DinRadioButton from "./DinRadioButton";
 import cookie from "cookie";
 // This should be creating a browser cookie for the user
 
+const DOMAIN_NAME = "alphabean.co.nz";
+
 export default function NightsAndPeople() {
 	const [loaded, updateLoaded] = useState(false);
 	const { userData, updateUserData } = useContext(UserDataContext);
@@ -63,6 +65,7 @@ export default function NightsAndPeople() {
 					document.cookie = `dinner_in_gbiv_customer_id=${
 						result.data.REST_cookie_value
 					};expires=${now.toUTCString()}`;
+					console.log("cookie created");
 					// Set the  nights and people to default values
 					updateUserData(d => {
 						return { ...userData, nights: 5, people: 3 };

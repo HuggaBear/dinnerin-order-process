@@ -21,7 +21,8 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 
 	// If the user has selected vegetarian only options, we must first filter the meals (only if not on the desserts page)
 	const theMeals = data[type].filter(
-		item => !data.loaded || type === "desserts" || (userData.vegetarian ? item.acf.vegetarian : true)
+		item =>
+			!data.loaded || type === "desserts" || (userData.vegetarian ? item.acf.vegetarian : !item.acf.vegetarian)
 	);
 
 	// Fetch meal/dessert data on mount. Type can be meals or desserts

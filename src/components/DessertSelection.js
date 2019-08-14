@@ -19,7 +19,6 @@ export default function DessertSelection() {
 	// Add a meal to the selected desserts list
 	const addSelectedDessert = (index, title, image, price, id) => {
 		// If the dessert already exists in the array, update its quantity, else add it with quantity x 1
-		console.log(id);
 		for (let i = 0; i < desserts.length; i++) {
 			if (desserts[i].id === id) {
 				updateUserData({

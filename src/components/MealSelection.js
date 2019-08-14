@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./MealSelection.scss";
 import Meals from "./Meals";
 import YourMeals from "./YourMeals";
@@ -34,31 +34,20 @@ export default function MealSelection() {
 	};
 
 	// Check database for previously selected meals. If they exist, load them into meals.
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				if (dinner_in_gbiv_customer_id) {
-					const result = await axios.get(
-						`https://proxy.alphabean.co.nz/api/dinnerin/meals?cookieid=${dinner_in_gbiv_customer_id}`
-					);
-					// Result is an array of meal IDs. -333 means no meal is selected, so this leaves us with an array of previously selected meals
-					const mealIDs = result.data.meals.filter(id => id !== -333);
-					console.log(mealIDs);
-					// if (previousMeals.length) {
-					// 	// Add all the previously selected meals to the userData array
-					// 	updateUserData({
-					// 		...userData,
-					// 		selectedMealCount: previousMeals.length,
-					// 		meals: previousMeals.map(id => {})
-					// 	});
-					// }
-				}
-			} catch (err) {
-				console.log(err);
-			}
-		};
-		fetchData();
-	}, []);
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		try {
+	// 			if (dinner_in_gbiv_customer_id) {
+	// 				const result = await axios.get(
+	// 					`https://proxy.alphabean.co.nz/api/dinnerin/meals?cookieid=${dinner_in_gbiv_customer_id}`
+	// 				);
+	// 			}
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 		}
+	// 	};
+	// 	fetchData();
+	// }, []);
 	// Remove a meal from the selected meals list if the list is not empty
 	const removeSelectedMeal = async (index, title, image, price, id) => {
 		if (selectedMealCount > 0) {

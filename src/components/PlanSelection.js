@@ -6,7 +6,8 @@ import ReactLoading from "react-loading";
 import cookie from "cookie";
 
 export default function PlanSelection() {
-	const [loaded, updateLoaded] = useState(false);
+	const [cardsLoaded, updateCardsLoaded] = useState(false);
+	const [appLoaded, updateAppLoaded] = useState(true);
 	const [data, updateData] = useState({
 		subscription: {
 			perWeek: null,
@@ -20,6 +21,7 @@ export default function PlanSelection() {
 
 	const continueClick = async e => {
 		try {
+			updateAppLoaded(false);
 			// Get the browser cookies as an object containing key value pairs
 			var cookies = cookie.parse(document.cookie);
 
@@ -35,6 +37,7 @@ export default function PlanSelection() {
 			window.location.href = `https://dinnerin.alphabean.co.nz/checkout/?cookie_id=${dinner_in_gbiv_customer_id}`;
 		} catch (err) {
 			console.log(err);
+			updateAppLoaded(true);
 		}
 	};
 
@@ -50,7 +53,7 @@ export default function PlanSelection() {
 				updateData(d => {
 					return { ...result.data };
 				});
-				updateLoaded(true);
+				updateCardsLoaded(true);
 			} catch (err) {
 				console.log(err);
 			}
@@ -58,7 +61,7 @@ export default function PlanSelection() {
 		fetchData();
 	}, [nights, people]);
 
-	return (
+	return appLoaded ? (
 		<div className="content plan-selection">
 			<h2 className="uppercase">Please select your preferred plan</h2>
 
@@ -73,7 +76,7 @@ export default function PlanSelection() {
 						entering in your details each time
 					</p>
 				</div>
-				{loaded ? (
+				{cardsLoaded ? (
 					<div className="price uppercase">
 						{`$${data.subscription.perWeek} Per Week`} <br />
 						{`$${data.subscription.perMeal} Per Meal`}
@@ -90,13 +93,14 @@ export default function PlanSelection() {
 				onClick={() => updateUserData({ ...userData, plan: "single" })}
 			>
 				<div className="info">
-					<h3 className="uppercase">Try us!</h3>
+					<h3 className="uppercase">Single Purchase</h3>
 					<p>
-						Sign up to a subscription and enjoy the benefits of 10% off and not having the hassle of
-						entering in your details each time
+						<strong>FIRST TIME? TRY US! :-)</strong>
+						<br />
+						No need to sign up
 					</p>
 				</div>
-				{loaded ? (
+				{cardsLoaded ? (
 					<div className="price uppercase">
 						{`$${data.singlePurchase.perWeek} Per Week`}
 						<br />
@@ -114,6 +118,10 @@ export default function PlanSelection() {
 					Continue
 				</button>
 			</div>
+		</div>
+	) : (
+		<div className="content loading">
+			<ReactLoading type="cubes" color="#00a651" />
 		</div>
 	);
 }
