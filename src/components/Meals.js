@@ -29,10 +29,18 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 	// Fetch meal/dessert data on mount. Type can be meals or desserts
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await axios.get(`https://dinnerin.co.nz/wp-json/wp/v2/${type}?per_page=100`);
-			updateData(d => {
-				return { ...d, [type]: result.data, loaded: true };
-			});
+			if (type === "desserts") {
+				const result = await axios.get(`${Constants.BASE_URL}/api/dinnerin/desserts`);
+				console.log(result.data);
+				updateData(d => {
+					return { ...d, [type]: result.data, loaded: true };
+				});
+			} else if (type === "meals") {
+				const result = await axios.get(`https://dinnerin.co.nz/wp-json/wp/v2/${type}?per_page=100`);
+				updateData(d => {
+					return { ...d, [type]: result.data, loaded: true };
+				});
+			}
 		};
 		fetchData();
 	}, [type]);
@@ -50,9 +58,9 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 						id={item.id}
 						className="loaded"
 						title={item.acf.title}
-						image={item.acf.meal_image}
+						image={type === "desserts" ? item.images[0].src : item.acf.meal_image}
 						addSelectedMeal={addSelectedMeal}
-						price={item.acf.price}
+						price={item.regular_price}
 					/>
 				) : (
 					<Meal key={index} />
