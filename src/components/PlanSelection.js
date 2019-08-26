@@ -64,9 +64,9 @@ export default function PlanSelection() {
 
 	return appLoaded ? (
 		<div className="content plan-selection">
-			<h2 className="uppercase">Please select your preferred plan</h2>
-			{/* 
-			<div
+			<h2 className="uppercase">Review Your Order</h2>
+
+			{/* <div
 				className={`card subscription ${userData.plan === "subscription" ? "selected" : ""}`}
 				onClick={() => updateUserData({ ...userData, plan: "subscription" })}
 			>
@@ -96,9 +96,9 @@ export default function PlanSelection() {
 				<div className="info">
 					<h3 className="uppercase">Single Purchase</h3>
 					<p>
-						<strong>FIRST TIME? TRY US! :-)</strong>
-						<br />
-						No need to sign up
+					Save time & spend it doing what you love with our healthy heat & eat meals 
+					<br></br>
+					Delivered direct to your door anywhere in the Wellington Region
 					</p>
 				</div>
 				{cardsLoaded ? (

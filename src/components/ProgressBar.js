@@ -13,7 +13,7 @@ export default function ProgressBar() {
 		"Special Diets",
 		"Meal Selection",
 		"Dessert Selection",
-		"Plan Selection",
+		"Your Order",
 		"Checkout"
 	];
 
@@ -22,7 +22,7 @@ export default function ProgressBar() {
 	}, [progress, flkty]);
 
 	//DEBUG - Start app on meal selection REMOVE
-	// updateProgress(4);
+	//updateProgress(2);
 
 	return (
 		<div className="progress-bar-wrapper">

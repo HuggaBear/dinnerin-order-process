@@ -77,6 +77,7 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 					<div className="allergens">
 						<h3>Allergens</h3>
 						<p>{allergens}</p>
+						<p>Made in a kitchen and on equipment that also processes products containing egg, fish, and soybean</p>
 					</div>
 					<div className="icons">
 						<h3>Components</h3>

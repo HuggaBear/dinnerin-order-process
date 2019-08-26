@@ -144,7 +144,7 @@ export default function NightsAndPeople() {
 							/>
 						))}
 					</div>
-					<h2>For how many meals?</h2>
+					<h2>How many meals?</h2>
 					<div className="radio-squares nights">
 						{nightsValues.map((value, index) => (
 							<DinRadioButton
@@ -163,7 +163,7 @@ export default function NightsAndPeople() {
 					</button>
 				</form>
 				<p className="more-meals">
-					If you would like to order more than 7 meals, please email info@dinnerin.co.nz for more options.
+					If you would like to order more than 7 meals, please email <a href="mailto:info@dinnerin.co.nz">info@dinnerin.co.nz</a> for more options.
 				</p>
 			</div>
 		</>
