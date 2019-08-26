@@ -11,7 +11,7 @@ export default function Header() {
 			</div>
 			<div className="header-lower">
 				<div className="inner">
-					<a href="https://dinnerin.alphabean.co.nz/">
+					<a>
 						<img
 							alt="DINNERin Logo"
 							src="https://dinnerin.co.nz/wp-content/uploads/2018/01/Dinner-In_BW_Logo.png"
