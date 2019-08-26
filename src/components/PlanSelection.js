@@ -96,9 +96,7 @@ export default function PlanSelection() {
 				<div className="info">
 					<h3 className="uppercase">Single Purchase</h3>
 					<p>
-					Save time & spend it doing what you love with our healthy heat & eat meals 
-					<br></br>
-					Delivered direct to your door anywhere in the Wellington Region
+					Your purchase includes FREE delivery
 					</p>
 				</div>
 				{cardsLoaded ? (
