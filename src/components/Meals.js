@@ -31,7 +31,6 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 		const fetchData = async () => {
 			if (type === "desserts") {
 				const result = await axios.get(`${Constants.BASE_URL}/api/dinnerin/desserts`);
-				console.log(result.data);
 				updateData(d => {
 					return { ...d, [type]: result.data, loaded: true };
 				});

@@ -22,7 +22,7 @@ export default function ProgressBar() {
 	}, [progress, flkty]);
 
 	//DEBUG - Start app on meal selection REMOVE
-	updateProgress(3);
+	// updateProgress(4);
 
 	return (
 		<div className="progress-bar-wrapper">

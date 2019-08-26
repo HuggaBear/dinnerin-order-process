@@ -10,7 +10,7 @@ export default function UserDataContextProvider({ children }) {
 		meals: [{}, {}, {}, {}, {}],
 		selectedMealCount: 0,
 		desserts: [],
-		plan: "subscription"
+		plan: "single"
 	});
 	return <UserDataContext.Provider value={{ userData, updateUserData }}>{children}</UserDataContext.Provider>;
 }

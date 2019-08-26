@@ -65,7 +65,7 @@ export default function PlanSelection() {
 	return appLoaded ? (
 		<div className="content plan-selection">
 			<h2 className="uppercase">Please select your preferred plan</h2>
-
+			{/* 
 			<div
 				className={`card subscription ${userData.plan === "subscription" ? "selected" : ""}`}
 				onClick={() => updateUserData({ ...userData, plan: "subscription" })}
@@ -87,7 +87,7 @@ export default function PlanSelection() {
 						<ReactLoading type="cubes" color={userData.plan === "subscription" ? "#ffffff" : "#00a651"} />
 					</div>
 				)}
-			</div>
+			</div> */}
 
 			<div
 				className={`card single-purchase ${userData.plan === "single" ? "selected" : ""}`}

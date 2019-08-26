@@ -4,11 +4,16 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 3rem 4rem;
-	grid-template-areas: "header header" "sub single" "button button";
+	grid-template-areas: "header header" "single single" "button button";
+	// grid-template-columns: 1fr;
+	// grid-gap: 3rem 4rem;
+	// grid-template-areas: "header" "single" "button";
+	justify-items: center;
+
 	@include breakMd {
 		grid-gap: 2rem;
 		grid-template-columns: 1fr;
-		grid-template-areas: "header" "sub" "single" "button";
+		grid-template-areas: "header" /* "sub" */ "single" "button";
 	}
 	h2 {
 		grid-area: header;
@@ -63,6 +68,7 @@
 	.cta {
 		grid-area: button;
 		text-align: center;
+		min-width: 320px;
 	}
 	.button {
 		margin: auto;
