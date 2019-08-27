@@ -31,7 +31,7 @@ export default function YourDesserts({ selectedDesserts, removeSelectedDessert }
 							</span>
 							{`${item.title} x${item.quantity}`}
 						</div>
-						<span className="price">{`$${(item.price * item.quantity).toFixed(2)}`}</span>
+						<span className="price">{`$${parseFloat(item.price * item.quantity).toFixed(2)}`}</span>
 					</div>
 				))}
 				<div className="footer">

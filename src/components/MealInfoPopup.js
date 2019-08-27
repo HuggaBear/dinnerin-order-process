@@ -8,9 +8,9 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 	const id = theMeals[popup.mealIndex].id;
 
 	// Extract data from acf fields
-	const { title, description, ingredients, allergens, components, meal_image, price } = theMeals[
-		popup.mealIndex
-	].acf;
+	const { title, description, ingredients, allergens, components, meal_image } = theMeals[popup.mealIndex].acf;
+
+	const price = theMeals[popup.mealIndex].regular_price;
 
 	// Close the popup only if exactly the wrapper or the close button is clicked
 	// Must specify this otherwise clicking on anything within the wrapper will close the popup
@@ -77,7 +77,10 @@ export default function MealInfoPopup({ data, type, addSelectedMeal, theMeals })
 					<div className="allergens">
 						<h3>Allergens</h3>
 						<p>{allergens}</p>
-						<p>Made in a kitchen and on equipment that also processes products containing egg, fish, and soybean</p>
+						<p>
+							Made in a kitchen and on equipment that also processes products containing egg, fish, and
+							soybean
+						</p>
 					</div>
 					<div className="icons">
 						<h3>Components</h3>
