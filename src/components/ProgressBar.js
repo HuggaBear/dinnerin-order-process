@@ -8,21 +8,14 @@ export default function ProgressBar() {
 	const { progress, updateProgress } = useContext(ProgressContext);
 
 	// All possible application states. Should be in sync with the components in Content.js
-	const steps = [
-		"Meals & People",
-		"Special Diets",
-		"Meal Selection",
-		"Dessert Selection",
-		"Your Order",
-		"Checkout"
-	];
+	const steps = ["Meals & People", "Special Diets", "Meal Selection", "Dessert Selection", "Your Order", "Checkout"];
 
 	useEffect(() => {
 		flkty && flkty.select(progress);
 	}, [progress, flkty]);
 
 	//DEBUG - Start app on meal selection REMOVE
-	//updateProgress(2);
+	updateProgress(3);
 
 	return (
 		<div className="progress-bar-wrapper">

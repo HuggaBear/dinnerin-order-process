@@ -68,6 +68,12 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 		</>
 	);
 
+	const comingSoon = data.loaded && type === "desserts" && !Constants.ENABLE_DESSERTS && (
+		<div className="desserts-coming-soon">
+			<h1>COMING SOON</h1>
+		</div>
+	);
+
 	return (
 		<>
 			{popup.showPopup && (
@@ -80,6 +86,7 @@ export default function Meals({ type, addSelectedMeal, buttons = true }) {
 				/>
 			)}
 			<div className="available-meals">
+				{comingSoon}
 				<div className="header">
 					<h3 className="uppercase">{`${
 						progress === 2 ? (userData.vegetarian ? "vegetarian" : "standard") : ""
