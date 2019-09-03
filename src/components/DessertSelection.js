@@ -65,23 +65,21 @@ export default function DessertSelection() {
 			setLoaded(false);
 
 			// Purge all previous meal selections
-			await axios.delete(
-				`${
-					Constants.BASE_URL_DIRECT
-				}/wp-json/dinnerinquasicart/v2/quasicart/purgealldesserts/notloggedin/${dinner_in_gbiv_customer_id}`
+			const response = await axios.delete(
+				`${Constants.BASE_URL_DIRECT}/wp-json/dinnerinquasicart/v2/quasicart/purgealldesserts/notloggedin/${dinner_in_gbiv_customer_id}`
 			);
+			console.log(response);
 
 			// Add all the new meals to the database (synchronous)
 			for (let i = 0; i < desserts.length; i++) {
 				for (let j = 0; j < desserts[i].quantity; j++) {
-					await axios.post(
-						`${
-							Constants.BASE_URL_DIRECT
-						}/wp-json/dinnerinquasicart/v2/quasicart/adddessert/notloggedin/${dinner_in_gbiv_customer_id}`,
+					const res = await axios.post(
+						`${Constants.BASE_URL_DIRECT}/wp-json/dinnerinquasicart/v2/quasicart/adddessert/notloggedin/${dinner_in_gbiv_customer_id}`,
 						{
 							dessert_post_id: desserts[i].id
 						}
 					);
+					console.log(res);
 				}
 			}
 
