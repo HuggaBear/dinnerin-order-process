@@ -101,9 +101,9 @@ export default function PlanSelection() {
 				</div>
 				{cardsLoaded ? (
 					<div className="price uppercase">
-						{`$${data.singlePurchase.perWeek} Per Week`}
+						{`$${data.singlePurchase.perWeek} MEAL ORDER`}
 						<br />
-						{`$${data.singlePurchase.perMeal} Per Meal`}
+						{`($${data.singlePurchase.perMeal} PER MEAL)`}
 					</div>
 				) : (
 					<div className="loading">
