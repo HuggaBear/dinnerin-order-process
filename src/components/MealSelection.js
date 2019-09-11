@@ -72,7 +72,11 @@ export default function MealSelection() {
 					`${
 						Constants.BASE_URL_DIRECT
 					}/wp-json/dinnerinquasicart/v2/quasicart/setmealselections/notloggedin/${dinner_in_gbiv_customer_id}`
-				);
+        ).then((resp) => {
+          if(resp.data.set_meal_selections_succeeded !== 1) {
+            throw resp.data
+          }
+        });
 
 				// Add all the new meals to the database (synchronous)
 				for (let i = 0; i < meals.length; i++) {
@@ -83,7 +87,11 @@ export default function MealSelection() {
 						{
 							new_meal_post_id: meals[i].id
 						}
-					);
+          ).then((resp) => {
+            if(resp.data.set_meal_selections_succeeded !== 1) {
+              throw resp.data
+            }
+          })
 				}
 
 				// // Add all the new meals to the database (simultaneous - cannot be implements because no database locking)
@@ -100,7 +108,7 @@ export default function MealSelection() {
 				// );
 				updateProgress(progress + 1);
 			} catch (err) {
-				console.log(err);
+				console.error(err);
 				setLoaded(true);
 			}
 		}
