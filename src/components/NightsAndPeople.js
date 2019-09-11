@@ -111,15 +111,21 @@ export default function NightsAndPeople() {
 					num_nights: nights,
 					num_people: people
 				}
-			);
-			updateUserData({
-				...userData,
-				meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
-				selectedMealCount: 0
-			});
-			updateProgress(progress + 1);
+      ).then((resp) => {
+        if(resp.data.setpn_succeeded === 1) {
+          updateUserData({
+            ...userData,
+            meals: [{}, {}, {}, {}, {}, {}, {}].filter((m, i) => i < nights),
+            selectedMealCount: 0
+          });
+
+          updateProgress(progress + 1);
+        } else {
+          throw resp.data
+        }
+      })
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 			updateLoaded(true);
 		}
 
