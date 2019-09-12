@@ -65,27 +65,33 @@ export default function DessertSelection() {
 			setLoaded(false);
 
 			// Purge all previous meal selections
-			const response = await axios.delete(
+			await axios.delete(
 				`${Constants.BASE_URL_DIRECT}/wp-json/dinnerinquasicart/v2/quasicart/purgealldesserts/notloggedin/${dinner_in_gbiv_customer_id}`
-			);
-			console.log(response);
+      ).then((resp) => {
+        if(resp.data.purge_all_desserts_succeeded !== 1) {
+          throw resp.data
+        }
+      })
 
 			// Add all the new meals to the database (synchronous)
 			for (let i = 0; i < desserts.length; i++) {
 				for (let j = 0; j < desserts[i].quantity; j++) {
-					const res = await axios.post(
+					await axios.post(
 						`${Constants.BASE_URL_DIRECT}/wp-json/dinnerinquasicart/v2/quasicart/adddessert/notloggedin/${dinner_in_gbiv_customer_id}`,
 						{
 							dessert_post_id: desserts[i].id
 						}
-					);
-					console.log(res);
+          ).then((resp) => {
+            if(resp.data.modify_desserts_succeeded !== 1) {
+              throw resp.data
+            }
+          })
 				}
 			}
 
 			updateProgress(progress + 1);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 			setLoaded(true);
 		}
 	};
