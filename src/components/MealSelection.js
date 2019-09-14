@@ -73,7 +73,7 @@ export default function MealSelection() {
 						Constants.BASE_URL_DIRECT
 					}/wp-json/dinnerinquasicart/v2/quasicart/setmealselections/notloggedin/${dinner_in_gbiv_customer_id}`
         ).then((resp) => {
-          if(resp.data.set_meal_selections_succeeded !== 1) {
+          if(resp.data.purge_meal_selections_succeeded !== 1) {
             throw resp.data
           }
         });
