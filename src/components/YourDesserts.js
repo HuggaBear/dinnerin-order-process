@@ -1,9 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./YourDesserts.scss";
-import { ProgressContext } from "../contexts/ProgressContext";
 
-export default function YourDesserts({ selectedDesserts, removeSelectedDessert }) {
-	const { progress, updateProgress } = useContext(ProgressContext);
+export default function YourDesserts({ selectedDesserts, removeSelectedDessert, continueClick}) {
 	const [expanded, updateExpanded] = useState(false);
 
 	const subtotal = selectedDesserts
@@ -39,7 +37,7 @@ export default function YourDesserts({ selectedDesserts, removeSelectedDessert }
 						<span className="uppercase ">Subtotal</span>
 						<span className="price">{`$${subtotal}`}</span>
 					</div>
-					<button className="uppercase button" onClick={() => updateProgress(progress + 1)}>
+					<button className="uppercase button" onClick={continueClick}>
 						Continue
 					</button>
 				</div>
