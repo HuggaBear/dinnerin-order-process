@@ -66,28 +66,32 @@ export default function DessertSelection() {
 
 			// Purge all previous meal selections
 			await axios.delete(
-				`${
-					Constants.BASE_URL_DIRECT
-				}/wp-json/dinnerinquasicart/v2/quasicart/purgealldesserts/notloggedin/${dinner_in_gbiv_customer_id}`
-			);
+				`${Constants.BASE_URL_DIRECT}/wp-json/dinnerinquasicart/v2/quasicart/purgealldesserts/notloggedin/${dinner_in_gbiv_customer_id}`
+      ).then((resp) => {
+        if(resp.data.purge_all_desserts_succeeded !== 1) {
+          throw resp.data
+        }
+      })
 
 			// Add all the new meals to the database (synchronous)
 			for (let i = 0; i < desserts.length; i++) {
 				for (let j = 0; j < desserts[i].quantity; j++) {
 					await axios.post(
-						`${
-							Constants.BASE_URL_DIRECT
-						}/wp-json/dinnerinquasicart/v2/quasicart/adddessert/notloggedin/${dinner_in_gbiv_customer_id}`,
+						`${Constants.BASE_URL_DIRECT}/wp-json/dinnerinquasicart/v2/quasicart/adddessert/notloggedin/${dinner_in_gbiv_customer_id}`,
 						{
 							dessert_post_id: desserts[i].id
 						}
-					);
+          ).then((resp) => {
+            if(resp.data.modify_desserts_succeeded !== 1) {
+              throw resp.data
+            }
+          })
 				}
 			}
 
 			updateProgress(progress + 1);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 			setLoaded(true);
 		}
 	};
@@ -96,7 +100,7 @@ export default function DessertSelection() {
 		<div className="content dessert-selection">
 			<h2 className="header">Select desserts to go with your meal</h2>
 			<ContinueMessage continueClick={continueClick} canContinue={true} />
-			<YourDesserts selectedDesserts={desserts} removeSelectedDessert={removeSelectedDessert} />
+			<YourDesserts selectedDesserts={desserts} removeSelectedDessert={removeSelectedDessert} continueClick={continueClick} />
 			<Meals type="desserts" addSelectedMeal={addSelectedDessert} buttons={false} />
 		</div>
 	) : (
