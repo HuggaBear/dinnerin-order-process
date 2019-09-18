@@ -16,9 +16,7 @@ const clearCookie = async (customerId) => {
     `${
       Constants.BASE_URL_DIRECT
     }/wp-json/dinnerinquasicart/v2/quasicart/purge/notloggedin/${customerId}`
-  ).then((resp) => {
-    console.log("resp", resp);
-  });
+  )
 }
 
 function App() {
